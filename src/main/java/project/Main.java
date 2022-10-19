@@ -10,11 +10,11 @@ public class Main {
     }
 
     private static void optionsMenu() {
-        String input = scanner.nextLine().toLowerCase();
+        System.out.println("Learning Progress Tracker");
 
         boolean quit = false;
         while (!quit) {
-            switch (input) {
+            switch (scanner.nextLine().toLowerCase()) {
                 case "":
                     System.out.println("No input");
                     break;
@@ -23,7 +23,7 @@ public class Main {
                     quit = true;
                     break;
                 default:
-                    System.out.println("Unknown command!");
+                    System.out.println("Error: unknown command!");
             }
         }
     }
