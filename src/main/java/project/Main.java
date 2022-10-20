@@ -23,11 +23,15 @@ public class Main {
                     System.out.println("Bye!");
                     quit = true;
                     break;
+                case "back":
+                    System.out.println("Enter 'exit' to exit the program.");
+                    break;
                 case "add students":
                     handleStudentsAdding();
                     break;
                 default:
                     System.out.println("Error: unknown command!");
+                    break;
             }
         }
     }
@@ -42,12 +46,10 @@ public class Main {
 
             if (studentsController.addStudent(input)) {
                 System.out.println("The student has been added.");
-            } else {
-                System.out.println("Incorrect credentials.");
             }
         }
 
         int totalSize = studentsController.getStudents().size();
-        System.out.printf("Total %d student%s have been added.", totalSize, totalSize == 1 ? "" : "s");
+        System.out.printf("Total %d student%s have been added.\n", totalSize, totalSize == 1 ? "" : "s");
     }
 }

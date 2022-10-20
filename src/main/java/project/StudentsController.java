@@ -27,6 +27,7 @@ public class StudentsController {
     private Map<String, String> getStudentCredential(String input) {
         String[] inputArray = input.split(" ");
         if (inputArray.length < 3) {
+            System.out.println("Incorrect credentials");
             return null;
         }
 
@@ -54,6 +55,16 @@ public class StudentsController {
     private boolean validCredentials(Map<String, String> credentials) {
         if (!credentials.get("firstName").matches("[a-zA-z\\-']{2,}")) {
             System.out.println("Incorrect first name");
+            return false;
+        }
+
+        if (!credentials.get("lastName").matches("[a-zA-z\\-' ]{2,}")) {
+            System.out.println("Incorrect last name");
+            return false;
+        }
+
+        if (!credentials.get("email").matches(".+@.+\\..+")) {
+            System.out.println("Incorrect email");
             return false;
         }
 
