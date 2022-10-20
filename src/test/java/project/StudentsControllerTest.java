@@ -15,6 +15,15 @@ class StudentsControllerTest {
     }
 
     @Test
+    @DisplayName("Add student with less than 3 credentials should return false")
+    void addStudentWithLessCredentials() {
+        StudentsController controller = new StudentsController();
+        assertFalse(controller.addStudent("Joen Doe"));
+        assertFalse(controller.addStudent("John"));
+        assertFalse(controller.addStudent(""));
+    }
+
+    @Test
     @DisplayName("Student with invalid first name should return false")
     void addStudentWithInvalidFirstName() {
         StudentsController controller = new StudentsController();
@@ -35,15 +44,6 @@ class StudentsControllerTest {
     }
 
     @Test
-    @DisplayName("Add student with less than 3 credentials should return false")
-    void addStudentWithLessCredentials() {
-        StudentsController controller = new StudentsController();
-        assertFalse(controller.addStudent("Joen Doe"));
-        assertFalse(controller.addStudent("John"));
-        assertFalse(controller.addStudent(""));
-    }
-
-    @Test
     @DisplayName("Student with wrong email format should return false")
     void addStudentWithIncorrectEmailFormat() {
         StudentsController controller = new StudentsController();
@@ -52,6 +52,8 @@ class StudentsControllerTest {
         assertFalse(controller.addStudent("John Doe Mark @hotmail.com"));
         assertFalse(controller.addStudent("John Doe Mark -johen@hotmail.com"));
         assertFalse(controller.addStudent("John Doe Mark johen@hotmail.com`"));
+        assertFalse(controller.addStudent("John Doe Mark johen@e@hotmail.com"));
+        assertFalse(controller.addStudent("John Doe Mark johen@hotmail.com.dombos"));
     }
 
     @Test
@@ -95,7 +97,6 @@ class StudentsControllerTest {
         controller.addStudent("John D23sdf2.,s doe@hotmail.com");
         controller.addStudent("John Doe doerogan");
         controller.addStudent("John doe mark@hotmal");
-        controller.addStudent("John Doe Mark johen@hotmail.com`");
         controller.addStudent("John Doe Mark @hotmail.com");
         controller.addStudent("'John Doe john@hotmail.com");
         controller.addStudent("John- Doe john@hotmail.com");

@@ -53,17 +53,17 @@ public class StudentsController {
     }
 
     private boolean validCredentials(Map<String, String> credentials) {
-        if (!credentials.get("firstName").matches("^[a-zA-z][a-zA-z\\-']{2,}")) {
+        if (!credentials.get("firstName").matches("([a-zA-Z][\\-']?)+[a-zA-Z]$")) {
             System.out.println("Incorrect first name");
             return false;
         }
 
-        if (!credentials.get("lastName").matches("[a-zA-z\\-' ]{2,}")) {
+        if (!credentials.get("lastName").matches("([a-zA-Z][\\-' ]?)+[a-zA-Z]$")) {
             System.out.println("Incorrect last name");
             return false;
         }
 
-        if (!credentials.get("email").matches(".+@.+\\..+")) {
+        if (!credentials.get("email").matches("[^@]+@[^@.]+\\.[^@.]+")) {
             System.out.println("Incorrect email");
             return false;
         }
