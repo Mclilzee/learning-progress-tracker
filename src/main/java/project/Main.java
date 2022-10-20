@@ -1,9 +1,17 @@
 package project;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    private static final Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner;
+    private static final List<Student> students;
+
+    static {
+        students = new ArrayList<>();
+        scanner = new Scanner(System.in);
+    }
 
     public static void main(String[] args) {
         optionsMenu();
@@ -23,7 +31,7 @@ public class Main {
                     quit = true;
                     break;
                 case "add students":
-                    addStudents();
+                    handleStudentsAdding();
                     break;
                 default:
                     System.out.println("Error: unknown command!");
@@ -31,7 +39,7 @@ public class Main {
         }
     }
 
-    private static void addStudents() {
+    private static void handleStudentsAdding() {
         System.out.println("Enter student credentials or 'back' to return");
         while (true) {
             String input = scanner.nextLine();
@@ -39,15 +47,29 @@ public class Main {
                 break;
             }
 
-            addStudent(input);
+            if (addStudent(input)) {
+                System.out.println("The student has been added.");
+            } else {
+                System.out.println("Incorrect credentials.");
+            }
         }
     }
 
     public static boolean addStudent(String input) {
-        return false;
+        String[] credentials = input.split(" ");
+        if (validateStudentCredentials(credentials)) {
+            students.add(new Student(credentials[0], credentials[1], credentials[2]));
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    private static String[] getStudentFromInput(String input) {
-        return null;
+    private static boolean validateStudentCredentials(String[] input) {
+        if (input.length != 3) {
+            return false;
+        }
+
+        return true;
     }
 }
