@@ -1,11 +1,10 @@
 package project;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class StudentsController {
 
-    private List<Student> students;
+    private final List<Student> students;
 
     public StudentsController() {
         this.students = new ArrayList<>();
@@ -16,17 +15,45 @@ public class StudentsController {
     }
 
     public boolean addStudent(String input) {
-        String[] credentials = input.split(" ");
-        if (validateStudentCredentials(credentials)) {
-            this.students.add(new Student(credentials[0], credentials[1], credentials[2]));
+        Map<String, String> credentials = getStudentCredential(input);
+        if (credentials != null) {
+            this.students.add(new Student(credentials.get("firstName"), credentials.get("lastName"), credentials.get("email")));
             return true;
         } else {
             return false;
         }
     }
 
-    private boolean validateStudentCredentials(String[] input) {
-        if (input.length != 3) {
+    private Map<String, String> getStudentCredential(String input) {
+        String[] inputArray = input.split(" ");
+        if (inputArray.length < 3) {
+            return null;
+        }
+
+        Map<String, String> credentials = new HashMap<>();
+        credentials.put("firstName", inputArray[0]);
+        credentials.put("lastName", getLastName(inputArray));
+        credentials.put("email", inputArray[inputArray.length - 1]);
+
+        if (validCredentials(credentials)) {
+            return credentials;
+        } else {
+            return null;
+        }
+    }
+
+    private String getLastName(String[] inputArray) {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 1; i < inputArray.length - 1; i++) {
+            builder.append(inputArray[i]).append(" ");
+        }
+
+        return builder.toString().trim();
+    }
+
+    private boolean validCredentials(Map<String, String> credentials) {
+        if (!credentials.get("firstName").matches("[a-zA-z\\-']{2,}")) {
+            System.out.println("Incorrect first name");
             return false;
         }
 

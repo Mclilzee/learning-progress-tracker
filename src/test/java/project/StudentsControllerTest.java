@@ -8,10 +8,26 @@ import static org.junit.jupiter.api.Assertions.*;
 class StudentsControllerTest {
 
     @Test
-    @DisplayName("Add student with right amount of credentials")
+    @DisplayName("Student with right amount of credentials should return true")
     void addStudent() {
         StudentsController controller = new StudentsController();
         assertTrue(controller.addStudent("John doe doe@hotmail.com"));
+    }
+
+    @Test
+    @DisplayName("Student with invalid first name should return false")
+    void addStudentWithInvalidFirsttName() {
+        StudentsController controller = new StudentsController();
+        assertFalse(controller.addStudent("J. Doe doe@hotmail.com"));
+        assertFalse(controller.addStudent("J23en.2as Doe john@hotmail.com"));
+    }
+
+    @Test
+    @DisplayName("Student with invalid last name should return false")
+    void AddStudentWithInvalidLastName() {
+        StudentsController controller = new StudentsController();
+        assertFalse(controller.addStudent("Joe D. john@hotmail.com"));
+        assertFalse(controller.addStudent("Joe D0domb21 john@hotmail.com"));
     }
 
     @Test
@@ -24,11 +40,12 @@ class StudentsControllerTest {
     }
 
     @Test
-    @DisplayName("Add student with more than 3 credentials should return false")
-    void addStudentWithMoreCredentials() {
+    @DisplayName("Student with wrong email format should return false")
+    void addStudentWithIncorrectEmailFormat() {
         StudentsController controller = new StudentsController();
-        assertFalse(controller.addStudent("John Doe Mark mark@gmail.com"));
-        assertFalse(controller.addStudent("John Doe Mark Man Michael michael@hotmail.com"));
+        assertFalse(controller.addStudent("John Doe markburg"));
+        assertFalse(controller.addStudent("John doe mark@hotmal"));
+        assertFalse(controller.addStudent("John Doe Mark @hotmail.com"));
     }
 
     @Test
@@ -36,7 +53,7 @@ class StudentsControllerTest {
     void studentsAddedToStudentsList() {
         StudentsController controller = new StudentsController();
         controller.addStudent("John Doe johndoe@hotmail.com");
-        controller.addStudent("Mark Asmar mark.asmar@hotmail.com");
+        controller.addStudent("Mark Asmar Joe mark.asmar@hotmail.com");
         assertEquals(controller.getStudents().size(), 2);
     }
 
@@ -47,7 +64,13 @@ class StudentsControllerTest {
         controller.addStudent("John doe");
         controller.addStudent("John");
         controller.addStudent("");
+        controller.addStudent("J. Doe doe@hotmail.com");
+        controller.addStudent("J234.sdf Doe doe@hotmail.com");
+        controller.addStudent("John D. doe@hotmail.com");
+        controller.addStudent("John D23sdf2.,s doe@hotmail.com");
+        controller.addStudent("John Doe doerogan");
+        controller.addStudent("John doe mark@hotmal");
+        controller.addStudent("John Doe Mark @hotmail.com");
         assertEquals(controller.getStudents().size(), 0);
     }
-
 }
