@@ -1,17 +1,11 @@
 package project;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    private static final Scanner scanner;
-    private static final List<Student> students;
-
-    static {
-        students = new ArrayList<>();
-        scanner = new Scanner(System.in);
-    }
+    private static final Scanner scanner = new Scanner(System.in);
+    private static final StudentsController studentsController = new StudentsController();
 
     public static void main(String[] args) {
         optionsMenu();
@@ -47,29 +41,14 @@ public class Main {
                 break;
             }
 
-            if (addStudent(input)) {
+            if (studentsController.addStudent(input)) {
                 System.out.println("The student has been added.");
             } else {
                 System.out.println("Incorrect credentials.");
             }
         }
-    }
 
-    public static boolean addStudent(String input) {
-        String[] credentials = input.split(" ");
-        if (validateStudentCredentials(credentials)) {
-            students.add(new Student(credentials[0], credentials[1], credentials[2]));
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private static boolean validateStudentCredentials(String[] input) {
-        if (input.length != 3) {
-            return false;
-        }
-
-        return true;
+        int totalSize = studentsController.getStudents().size();
+        System.out.printf("Total %d student%s have been added.", totalSize, totalSize == 1 ? "" : "s");
     }
 }
