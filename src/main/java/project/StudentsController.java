@@ -4,14 +4,14 @@ import java.util.*;
 
 public class StudentsController {
 
-    private final List<Student> students;
+    private final Map<Integer, Student> students;
 
     public StudentsController() {
-        this.students = new ArrayList<>();
+        this.students = new LinkedHashMap<>();
     }
 
-    public List<Student> getStudents() {
-        return students;
+    public int getStudentsNumber() {
+        return students.size();
     }
 
     public boolean addStudent(String input) {
@@ -20,13 +20,12 @@ public class StudentsController {
             return false;
         }
 
-        boolean added = this.students.add(student);
-        if (added) {
-            System.out.println("The student has been added.");
-            return true;
-        } else {
-            System.out.println("Failed to add new student");
+        if (students.containsKey(student.hashCode())) {
+            System.out.println("email is already taken.");
             return false;
+        } else {
+            students.put(student.hashCode(), student);
+            return true;
         }
     }
 
@@ -48,9 +47,9 @@ public class StudentsController {
         }
 
         String[] credentials = new String[3];
-        credentials[0] = "firstName";
-        credentials[1] = "lastName";
-        credentials[2] = "email";
+        credentials[0] = inputArray[0];
+        credentials[1] = getLastName(inputArray);
+        credentials[2] = inputArray[inputArray.length - 1];
 
         if (validCredentials(credentials)) {
             return credentials;
