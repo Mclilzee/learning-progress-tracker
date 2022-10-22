@@ -47,6 +47,6 @@ public class Student {
 
     @Override
     public int hashCode() {
-        return Objects.hash(email);
+        return Math.abs(Objects.hash(email));
     }
 }

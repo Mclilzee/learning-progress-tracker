@@ -14,6 +14,10 @@ public class StudentsController {
         return students.size();
     }
 
+    public Set<Integer> getStudentsIDSet() {
+        return this.students.keySet();
+    }
+
     public Student getStudent(int id) {
         return students.get(id);
     }
@@ -29,6 +33,7 @@ public class StudentsController {
             return false;
         } else {
             students.put(student.hashCode(), student);
+            System.out.println("The student has been added.");
             return true;
         }
     }

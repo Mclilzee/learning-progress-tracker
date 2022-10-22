@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class StudentsControllerTest {
@@ -110,5 +113,18 @@ class StudentsControllerTest {
         studentController.addStudent("Joe Doeh- john@hotmail.com");
 
         assertEquals(studentController.getStudentsNumber(), 0);
+    }
+
+    @Test
+    @DisplayName("Return correct students id set")
+    void getStudentsIDSet() {
+        Student first = new Student("John", "Doe", "John@hotmail.com");
+        Student second = new Student("Mark", "Zerg-berg asmar", "mark@gmail.com");
+        studentController.addStudent("John Doe John@hotmail.com");
+        studentController.addStudent("Mark Zerg-berg asmar mark@gmail.com");
+        Set<Integer> set = new LinkedHashSet<>();
+        set.add(first.hashCode());
+        set.add(second.hashCode());
+        assertEquals(set, studentController.getStudentsIDSet());
     }
 }

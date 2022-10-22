@@ -29,8 +29,11 @@ public class Main {
                 case "add students":
                     handleStudentsAdding();
                     break;
+                case "list":
+                    printStudentsIDList();
+                    break;
                 default:
-                    System.out.println("Error: unknown command!");
+                    System.out.println("unknown command!");
                     break;
             }
         }
@@ -49,5 +52,17 @@ public class Main {
 
         int totalSize = studentsController.getStudentsNumber();
         System.out.printf("Total %d student%s have been added.\n", totalSize, totalSize == 1 ? "" : "s");
+    }
+
+    private static void printStudentsIDList() {
+        if (studentsController.getStudentsNumber() == 0) {
+            System.out.println("No students found");
+            return;
+        }
+
+        System.out.println("Students:");
+        for (int id : studentsController.getStudentsIDSet()) {
+            System.out.println(id);
+        }
     }
 }
