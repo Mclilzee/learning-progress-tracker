@@ -17,29 +17,29 @@ class StudentTest {
 
     @Test
     void getFirstName() {
-        assertEquals(student.getFirstName(), "John");
+        assertEquals("John", student.getFirstName());
     }
 
     @Test
     void setFirstName() {
         student.setFirstName("Dombos");
-        assertEquals(student.getFirstName(), "Dombos");
+        assertEquals("Dombos", student.getFirstName());
     }
 
     @Test
     void getLastName() {
-        assertEquals(student.getLastName(), "Doe");
+        assertEquals("Doe", student.getLastName());
     }
 
     @Test
     void setLastName() {
         student.setLastName("LastDoe");
-        assertEquals(student.getLastName(), "LastDoe");
+        assertEquals("LastDoe", student.getLastName());
     }
 
     @Test
     void getEmail() {
-        assertEquals(student.getEmail(), "Johndoe@hotmail.com");
+        assertEquals("Johndoe@hotmail.com", student.getEmail());
     }
 
     @Test
@@ -76,5 +76,23 @@ class StudentTest {
     void objectsHasSameHashcode() {
         Student student2 = new Student("Mark", "Zoigberg", "Johndoe@hotmail.com");
         assertEquals(student.hashCode(), student2.hashCode());
+    }
+
+    @Test
+    @DisplayName("Student prints correct score format")
+    void printScoreFormat() {
+        int hash = student.hashCode();
+        String expected = String.format("%d points: Java=0; DSA=0; Databases=0; Spring=0", hash);
+        assertEquals(expected, student.toString());
+    }
+
+    @Test
+    @DisplayName("Student prints correct score after adding")
+    void printScoreAfterAdding() {
+        int hash = student.hashCode();
+        student.addScores(new int[]{5, 5, 5, 5});
+        student.addScores(new int[]{7, 8, 9, 10});
+        String expected = String.format("%d points: Java=12; DSA=13; Databases=14; Spring=15", hash);
+        assertEquals(expected, student.toString());
     }
 }

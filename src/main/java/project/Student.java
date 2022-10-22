@@ -39,20 +39,20 @@ public class Student {
         this.email = email;
     }
 
-    public void addScores(String[] scores) {
+    public void addScores(int[] scores) {
         if (scores.length < courses.length) {
             throw new IllegalArgumentException();
         }
 
         for (int i = 0; i < scores.length; i++) {
-            int score = Integer.parseInt(scores[i]);
+            int score = scores[i];
             courses[i].addScore(score);
         }
     }
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder(hashCode()).append(" points: ");
+        StringBuilder builder = new StringBuilder(String.valueOf(hashCode())).append(" points: ");
         for (int i = 0; i < courses.length; i++) {
             builder.append(courses[i].getName()).append("=").append(courses[i].getScore());
             if (i != courses.length - 1) {
