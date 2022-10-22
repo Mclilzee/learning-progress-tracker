@@ -36,6 +36,9 @@ public class Main {
                 case "add points":
                     addPointsToStudent();
                     break;
+                case "find":
+                    printStudentPointsInformation();
+                    break;
                 default:
                     System.out.println("unknown command!");
                     break;
@@ -98,6 +101,28 @@ public class Main {
 
             student.addScores(Arrays.stream(inputNumbers).skip(1).toArray());
             System.out.println("Points updated.");
+        }
+    }
+
+    private static void printStudentPointsInformation() {
+        System.out.println("Enter an id or 'back' to return:");
+        while (true) {
+            String input = scanner.nextLine();
+            if ("back".equalsIgnoreCase(input)) {
+                break;
+            }
+
+            if (!input.matches("\\d+")) {
+                System.out.println("Incorrect student id format");
+                continue;
+            }
+
+            Student student = studentsController.getStudent(Integer.parseInt(input));
+            if (student == null) {
+                System.out.println("No student is found for id=" + input);
+            } else {
+                System.out.println(student);
+            }
         }
     }
 }
