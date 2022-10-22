@@ -33,6 +33,8 @@ public class Main {
                 case "list":
                     printStudentsIDList();
                     break;
+                case "add points":
+                    addPointsToStudent();
                 default:
                     System.out.println("unknown command!");
                     break;
@@ -69,6 +71,13 @@ public class Main {
         System.out.println("Students:");
         for (int id : studentsController.getStudentsIDSet()) {
             System.out.println(id);
+        }
+    }
+
+    private static void addPointsToStudent() {
+        System.out.println("Enter an id and points or 'back' to return:");
+        while (true) {
+            String input = scanner.nextLine();
         }
     }
 }
