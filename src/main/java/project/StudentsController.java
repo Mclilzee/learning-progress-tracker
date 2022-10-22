@@ -16,10 +16,16 @@ public class StudentsController {
 
     public boolean addStudent(String input) {
         Map<String, String> credentials = getStudentCredential(input);
-        if (credentials != null) {
-            this.students.add(new Student(credentials.get("firstName"), credentials.get("lastName"), credentials.get("email")));
+        if (credentials == null) {
+            return false;
+        }
+
+        boolean added = this.students.add(new Student(credentials.get("firstName"), credentials.get("lastName"), credentials.get("email")));
+        if (added) {
+            System.out.println("The student has been added.");
             return true;
         } else {
+            System.out.println("Failed to add new student");
             return false;
         }
     }

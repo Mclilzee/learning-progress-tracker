@@ -44,9 +44,7 @@ public class Main {
                 break;
             }
 
-            if (studentsController.addStudent(input)) {
-                System.out.println("The student has been added.");
-            }
+            studentsController.addStudent(input);
         }
 
         int totalSize = studentsController.getStudents().size();
