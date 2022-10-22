@@ -42,8 +42,7 @@ class StudentsControllerTest {
     }
 
     @ParameterizedTest(name = "Student with wrong email format should return false")
-    @ValueSource(strings = {"John Doe markburg", "John doe mark@hotmal", "John Doe Mark @hotmail.com",
-            "John Doe Mark -johen@hotmail.com", "John Doe Mark johen@hotmail.com`", "John Doe Mark johen@e@hotmail.com",
+    @ValueSource(strings = {"John Doe markburg", "John doe mark@hotmal", "John Doe Mark @hotmail.com", "John Doe Mark johen@e@hotmail.com",
             "John Doe Mark johen@hotmail.com.dombos"})
     void addStudentWithIncorrectEmailFormat(String credentials) {
         assertFalse(studentController.addStudent(credentials));
@@ -54,12 +53,14 @@ class StudentsControllerTest {
     void studentsAddedToStudentsList() {
         studentController.addStudent("John Doe johndoe@hotmail.com");
         studentController.addStudent("Mark Asm-ar Joe mark.asmar@hotmail.com");
-        assertEquals(studentController.getStudents().size(), 2);
+        assertEquals(studentController.getStudentsNumber(), 2);
     }
 
     @Test
     @DisplayName("Correct student information being added")
     void studentListHaveCorrectInformation() {
+        // TODO
+
     }
 
     @Test
@@ -81,6 +82,6 @@ class StudentsControllerTest {
 //        studentController.addStudent("Joe Doeh -john@hotmail.com");
         studentController.addStudent("Joe Doeh- john@hotmail.com");
 
-        assertEquals(studentController.getStudents().size(), 0);
+        assertEquals(studentController.getStudentsNumber(), 0);
     }
 }
