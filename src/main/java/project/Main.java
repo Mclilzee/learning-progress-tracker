@@ -1,5 +1,6 @@
 package project;
 
+import javax.management.openmbean.KeyAlreadyExistsException;
 import java.util.Scanner;
 
 public class Main {
@@ -47,7 +48,12 @@ public class Main {
                 break;
             }
 
-            studentsController.addStudent(input);
+            try {
+                studentsController.addStudent(input);
+                System.out.println("The student has been added.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
 
         int totalSize = studentsController.getStudentsNumber();
