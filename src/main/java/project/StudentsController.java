@@ -14,6 +14,10 @@ public class StudentsController {
         return students.size();
     }
 
+    public Student getStudent(int id) {
+        return students.get(id);
+    }
+
     public boolean addStudent(String input) {
         Student student = getStudentObject(input);
         if (student == null) {

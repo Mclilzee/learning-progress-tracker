@@ -49,18 +49,45 @@ class StudentsControllerTest {
     }
 
     @Test
-    @DisplayName("Students has been added to students list")
+    @DisplayName("Students with different emails can be added")
     void studentsAddedToStudentsList() {
         studentController.addStudent("John Doe johndoe@hotmail.com");
         studentController.addStudent("Mark Asm-ar Joe mark.asmar@hotmail.com");
-        assertEquals(studentController.getStudentsNumber(), 2);
+        studentController.addStudent("John Doe jonathan@hotmail.com");
+        assertEquals(studentController.getStudentsNumber(), 3);
+    }
+
+    @Test
+    @DisplayName("Only students with unique email can be added")
+    void studentsWithSameEmailAreNotAdded() {
+        studentController.addStudent("John Doe johndoe@hotmail.com");
+        studentController.addStudent("Mark zerg-berg johndoe@hotmail.com");
+        studentController.addStudent("Omar khalil asmar johndoe@hotmail.com");
+        assertEquals(studentController.getStudentsNumber(), 1);
+    }
+
+    @Test
+    @DisplayName("Student with same email does not overwrite previous one")
+    void sameEmailDoesNotOverWrite() {
+        Student student = new Student("John", "doe", "john@hotmail.com");
+        studentController.addStudent("John doe john@hotmail.com");
+        studentController.addStudent("Mark zergberg john@hotmail.com");
+        assertEquals(studentController.getStudentsNumber(), 1);
+
+        String studentFirstName = studentController.getStudent(student.hashCode()).getFirstName();
+        assertEquals(studentFirstName, "John");
+        assertNotEquals(studentFirstName, "Mark");
     }
 
     @Test
     @DisplayName("Correct student information being added")
     void studentListHaveCorrectInformation() {
-        // TODO
-
+        studentController.addStudent("John doe john@hotmail.com");
+        studentController.addStudent("Mark Zoigb-erg mark@gmail.com");
+        Student john = new Student("John", "doe", "john@hotmail.com");
+        Student mark = new Student("Mark", "Zoigb-erg", "mark@gmail.com");
+        assertEquals(studentController.getStudent(john.hashCode()).getEmail(), john.getEmail());
+        assertEquals(studentController.getStudent(mark.hashCode()).getEmail(), mark.getEmail());
     }
 
     @Test
