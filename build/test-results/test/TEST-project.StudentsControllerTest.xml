@@ -1,76 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="project.StudentsControllerTest" tests="25" skipped="0" failures="0" errors="0" timestamp="2022-10-22T06:45:48" hostname="DESKTOP-DM0E31D" time="0.087">
+<testsuite name="project.StudentsControllerTest" tests="23" skipped="0" failures="0" errors="0" timestamp="2022-10-22T07:19:40" hostname="DESKTOP-DM0E31D" time="0.07">
   <properties/>
-  <testcase name="Student with right amount of credentials and format should return true" classname="project.StudentsControllerTest" time="0.041"/>
+  <testcase name="Student with right amount of credentials and format should return true" classname="project.StudentsControllerTest" time="0.035"/>
   <testcase name="Student with right amount of credentials and format should return true" classname="project.StudentsControllerTest" time="0.001"/>
-  <testcase name="Student with right amount of credentials and format should return true" classname="project.StudentsControllerTest" time="0.001"/>
-  <testcase name="Return correct students id set" classname="project.StudentsControllerTest" time="0.003"/>
+  <testcase name="Student with right amount of credentials and format should return true" classname="project.StudentsControllerTest" time="0.0"/>
+  <testcase name="Return correct students id set" classname="project.StudentsControllerTest" time="0.002"/>
   <testcase name="Add student with less than 3 credentials should return false" classname="project.StudentsControllerTest" time="0.001"/>
-  <testcase name="Add student with less than 3 credentials should return false" classname="project.StudentsControllerTest" time="0.001"/>
-  <testcase name="Add student with less than 3 credentials should return false" classname="project.StudentsControllerTest" time="0.001"/>
-  <testcase name="Only students with unique email can be added" classname="project.StudentsControllerTest" time="0.002"/>
+  <testcase name="Add student with less than 3 credentials should return false" classname="project.StudentsControllerTest" time="0.0"/>
+  <testcase name="Add student with less than 3 credentials should return false" classname="project.StudentsControllerTest" time="0.0"/>
   <testcase name="Student with invalid last name should return false" classname="project.StudentsControllerTest" time="0.001"/>
   <testcase name="Student with invalid last name should return false" classname="project.StudentsControllerTest" time="0.001"/>
   <testcase name="Student with invalid last name should return false" classname="project.StudentsControllerTest" time="0.001"/>
-  <testcase name="Student with invalid last name should return false" classname="project.StudentsControllerTest" time="0.002"/>
-  <testcase name="Student with invalid first name should return false" classname="project.StudentsControllerTest" time="0.0"/>
-  <testcase name="Student with invalid first name should return false" classname="project.StudentsControllerTest" time="0.0"/>
-  <testcase name="Student with invalid first name should return false" classname="project.StudentsControllerTest" time="0.0"/>
+  <testcase name="Student with invalid last name should return false" classname="project.StudentsControllerTest" time="0.001"/>
   <testcase name="Student with invalid first name should return false" classname="project.StudentsControllerTest" time="0.001"/>
-  <testcase name="Student has not been added to students list" classname="project.StudentsControllerTest" time="0.003"/>
-  <testcase name="Student with same email does not overwrite previous one" classname="project.StudentsControllerTest" time="0.002"/>
+  <testcase name="Student with invalid first name should return false" classname="project.StudentsControllerTest" time="0.001"/>
+  <testcase name="Student with invalid first name should return false" classname="project.StudentsControllerTest" time="0.001"/>
+  <testcase name="Student with invalid first name should return false" classname="project.StudentsControllerTest" time="0.001"/>
+  <testcase name="Only students with unique email can be added" classname="project.StudentsControllerTest" time="0.001"/>
   <testcase name="Students with different emails can be added" classname="project.StudentsControllerTest" time="0.001"/>
+  <testcase name="Student with wrong email format should return false" classname="project.StudentsControllerTest" time="0.001"/>
+  <testcase name="Student with wrong email format should return false" classname="project.StudentsControllerTest" time="0.0"/>
   <testcase name="Student with wrong email format should return false" classname="project.StudentsControllerTest" time="0.0"/>
   <testcase name="Student with wrong email format should return false" classname="project.StudentsControllerTest" time="0.001"/>
   <testcase name="Student with wrong email format should return false" classname="project.StudentsControllerTest" time="0.001"/>
-  <testcase name="Student with wrong email format should return false" classname="project.StudentsControllerTest" time="0.001"/>
-  <testcase name="Student with wrong email format should return false" classname="project.StudentsControllerTest" time="0.001"/>
   <testcase name="Correct student information being added" classname="project.StudentsControllerTest" time="0.001"/>
-  <system-out><![CDATA[The student has been added.
-The student has been added.
-The student has been added.
-The student has been added.
-The student has been added.
-Incorrect credentials
-Incorrect credentials
-Incorrect credentials
-The student has been added.
-email is already taken.
-email is already taken.
-Incorrect last name
-Incorrect last name
-Incorrect last name
-Incorrect last name
-Incorrect first name
-Incorrect first name
-Incorrect first name
-Incorrect first name
-Incorrect credentials
-Incorrect credentials
-Incorrect credentials
-Incorrect first name
-Incorrect first name
-Incorrect last name
-Incorrect last name
-Incorrect email
-Incorrect email
-Incorrect email
-Incorrect first name
-Incorrect first name
-Incorrect last name
-Incorrect last name
-The student has been added.
-email is already taken.
-The student has been added.
-The student has been added.
-The student has been added.
-Incorrect email
-Incorrect email
-Incorrect email
-Incorrect email
-Incorrect email
-The student has been added.
-The student has been added.
-]]></system-out>
+  <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -23,7 +23,7 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">25</div>
+<div class="counter">23</div>
 <p>tests</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.068s</div>
+<div class="counter">0.053s</div>
 <p>duration</p>
 </div>
 </td>
@@ -62,9 +62,6 @@
 <ul class="tabLinks">
 <li>
 <a href="#tab0">Tests</a>
-</li>
-<li>
-<a href="#tab1">Standard output</a>
 </li>
 </ul>
 <div id="tab0" class="tab">
@@ -99,13 +96,13 @@
 <tr>
 <td class="success">Student with invalid last name should return false</td>
 <td class="success">AddStudentWithInvalidLastName(String)[4]</td>
-<td class="success">0.002s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">Student with right amount of credentials and format should return true</td>
 <td class="success">addStudentWithCorrectAmountOfCredentials(String)[1]</td>
-<td class="success">0.041s</td>
+<td class="success">0.035s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -117,25 +114,25 @@
 <tr>
 <td class="success">Student with right amount of credentials and format should return true</td>
 <td class="success">addStudentWithCorrectAmountOfCredentials(String)[3]</td>
-<td class="success">0.001s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">Student with wrong email format should return false</td>
-<td class="success">addStudentWithIncorrectEmailFormat(String)[1]</td>
 <td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">Student with wrong email format should return false</td>
-<td class="success">addStudentWithIncorrectEmailFormat(String)[2]</td>
+<td class="success">addStudentWithIncorrectEmailFormat(String)[1]</td>
 <td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">Student with wrong email format should return false</td>
+<td class="success">addStudentWithIncorrectEmailFormat(String)[2]</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Student with wrong email format should return false</td>
 <td class="success">addStudentWithIncorrectEmailFormat(String)[3]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -153,19 +150,19 @@
 <tr>
 <td class="success">Student with invalid first name should return false</td>
 <td class="success">addStudentWithInvalidFirstName(String)[1]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">Student with invalid first name should return false</td>
 <td class="success">addStudentWithInvalidFirstName(String)[2]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">Student with invalid first name should return false</td>
 <td class="success">addStudentWithInvalidFirstName(String)[3]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -183,25 +180,25 @@
 <tr>
 <td class="success">Add student with less than 3 credentials should return false</td>
 <td class="success">addStudentWithLessCredentials(String)[2]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">Add student with less than 3 credentials should return false</td>
 <td class="success">addStudentWithLessCredentials(String)[3]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">Return correct students id set</td>
 <td class="success">getStudentsIDSet()</td>
-<td class="success">0.003s</td>
+<td class="success">0.002s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">Student with same email does not overwrite previous one</td>
+<td class="success">Only students with unique email can be added</td>
 <td class="success">sameEmailDoesNotOverWrite()</td>
-<td class="success">0.002s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -216,70 +213,7 @@
 <td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
-<tr>
-<td class="success">Student has not been added to students list</td>
-<td class="success">studentsNotAddedToStudentsList()</td>
-<td class="success">0.003s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">Only students with unique email can be added</td>
-<td class="success">studentsWithSameEmailAreNotAdded()</td>
-<td class="success">0.002s</td>
-<td class="success">passed</td>
-</tr>
 </table>
-</div>
-<div id="tab1" class="tab">
-<h2>Standard output</h2>
-<span class="code">
-<pre>The student has been added.
-The student has been added.
-The student has been added.
-The student has been added.
-The student has been added.
-Incorrect credentials
-Incorrect credentials
-Incorrect credentials
-The student has been added.
-email is already taken.
-email is already taken.
-Incorrect last name
-Incorrect last name
-Incorrect last name
-Incorrect last name
-Incorrect first name
-Incorrect first name
-Incorrect first name
-Incorrect first name
-Incorrect credentials
-Incorrect credentials
-Incorrect credentials
-Incorrect first name
-Incorrect first name
-Incorrect last name
-Incorrect last name
-Incorrect email
-Incorrect email
-Incorrect email
-Incorrect first name
-Incorrect first name
-Incorrect last name
-Incorrect last name
-The student has been added.
-email is already taken.
-The student has been added.
-The student has been added.
-The student has been added.
-Incorrect email
-Incorrect email
-Incorrect email
-Incorrect email
-Incorrect email
-The student has been added.
-The student has been added.
-</pre>
-</span>
 </div>
 </div>
 <div id="footer">
@@ -289,7 +223,7 @@ The student has been added.
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 7.4</a> at Oct 22, 2022, 8:45:48 AM</p>
+<a href="http://www.gradle.org">Gradle 7.4</a> at Oct 22, 2022, 9:19:40 AM</p>
 </div>
 </div>
 </body>
