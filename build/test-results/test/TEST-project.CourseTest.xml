@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="project.CourseTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-10-22T16:54:25" hostname="DESKTOP-DM0E31D" time="0.022">
+  <properties/>
+  <testcase name="Does not add negative numbers" classname="project.CourseTest" time="0.019"/>
+  <testcase name="getName()" classname="project.CourseTest" time="0.001"/>
+  <testcase name="getScore()" classname="project.CourseTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,6 +1,6 @@
 package project;
 
-import javax.management.openmbean.KeyAlreadyExistsException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -35,6 +35,7 @@ public class Main {
                     break;
                 case "add points":
                     addPointsToStudent();
+                    break;
                 default:
                     System.out.println("unknown command!");
                     break;
@@ -78,6 +79,25 @@ public class Main {
         System.out.println("Enter an id and points or 'back' to return:");
         while (true) {
             String input = scanner.nextLine();
+            if ("back".equalsIgnoreCase(input)) {
+                break;
+            }
+
+            if (!input.matches("\\d+( \\d+){4}")) {
+                System.out.println("Incorrect points format");
+                continue;
+            }
+
+            int[] inputNumbers = Arrays.stream(input.split(" ")).mapToInt(Integer::parseInt).toArray();
+
+            Student student = studentsController.getStudent(inputNumbers[0]);
+            if (student == null) {
+                System.out.println("No student is found for id=" + inputNumbers[0]);
+                continue;
+            }
+
+            student.addScores(Arrays.stream(inputNumbers).skip(1).toArray());
+            System.out.println("Points updated.");
         }
     }
 }
