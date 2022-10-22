@@ -29,7 +29,7 @@ public class StudentsController {
         }
 
         if (students.containsKey(student.hashCode())) {
-            System.out.println("email is already taken.");
+            System.out.println("This email is already taken.");
             return false;
         } else {
             students.put(student.hashCode(), student);
@@ -39,29 +39,19 @@ public class StudentsController {
     }
 
     private Student getStudentObject(String input) {
-        String[] credentials = getStudentCredential(input);
-
-        if (credentials == null) {
-            return null;
-        } else {
-            return new Student(credentials[0], credentials[1], credentials[2]);
-        }
-    }
-
-    private String[] getStudentCredential(String input) {
         String[] inputArray = input.split(" ");
         if (inputArray.length < 3) {
             System.out.println("Incorrect credentials");
             return null;
         }
 
-        String[] credentials = new String[3];
-        credentials[0] = inputArray[0];
-        credentials[1] = getLastName(inputArray);
-        credentials[2] = inputArray[inputArray.length - 1];
+        String firstName = inputArray[0];
+        String lastName = getLastName(inputArray);
+        String email = inputArray[inputArray.length - 1];
+        Student student = new Student(firstName, lastName, email);
 
-        if (validCredentials(credentials)) {
-            return credentials;
+        if (validCredentials(student)) {
+            return student;
         } else {
             return null;
         }
@@ -76,18 +66,18 @@ public class StudentsController {
         return builder.toString().trim();
     }
 
-    private boolean validCredentials(String[] credentials) {
-        if (!credentials[0].matches("([a-zA-Z][\\-']?)+[a-zA-Z]$")) {
+    private boolean validCredentials(Student student) {
+        if (!student.getFirstName().matches("([a-zA-Z][\\-']?)+[a-zA-Z]$")) {
             System.out.println("Incorrect first name");
             return false;
         }
 
-        if (!credentials[1].matches("([a-zA-Z][\\-' ]?)+[a-zA-Z]$")) {
+        if (!student.getLastName().matches("([a-zA-Z][\\-' ]?)+[a-zA-Z]$")) {
             System.out.println("Incorrect last name");
             return false;
         }
 
-        if (!credentials[2].matches("[^@]+@[^@.]+\\.[^@.]+")) {
+        if (!student.getEmail().matches("[^@]+@[^@.]+\\.[^@.]+")) {
             System.out.println("Incorrect email");
             return false;
         }
