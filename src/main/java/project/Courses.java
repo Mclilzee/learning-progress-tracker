@@ -6,8 +6,8 @@ public enum Courses {
     DATABASES("Databases", 550),
     SPRING("Spring", 550);
 
-    private int completionScore;
-    private String name;
+    private final int completionScore;
+    private final String name;
 
     Courses(String name, int completionScore) {
         this.name = name;
