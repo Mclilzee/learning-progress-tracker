@@ -87,27 +87,4 @@ class StudentTest {
         String expected = String.format("%d points: Java=0; DSA=0; Databases=0; Spring=0", hash);
         assertEquals(expected, student.toString());
     }
-
-    @Test
-    @DisplayName("Student prints correct score after adding")
-    void printScoreAfterAdding() {
-        int hash = student.hashCode();
-        student.addScores(new int[]{5, 5, 5, 5});
-        student.addScores(new int[]{7, 8, 9, 10});
-        String expected = String.format("%d points: Java=12; DSA=13; Databases=14; Spring=15", hash);
-        assertEquals(expected, student.toString());
-    }
-
-    @Test
-    @DisplayName("Enrolled in the correct courses")
-    void enrolledCourses() {
-        assertEquals(0, student.getEnrolledCourseSet().size());
-        student.addScores(new int[]{1, 0, 0, 1});
-        assertEquals(2, student.getEnrolledCourseSet().size());
-
-        Set<Course> enrolledCourses = student.getEnrolledCourseSet();
-        assertTrue(enrolledCourses.contains(Courses.JAVA.getCourse()));
-        assertTrue(enrolledCourses.contains(Courses.SPRING.getCourse()));
-        assertFalse(enrolledCourses.contains(Courses.DATABASES.getCourse()));
-    }
 }

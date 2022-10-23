@@ -3,7 +3,8 @@ package project;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import project.Course;
+
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -11,20 +12,27 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 class CourseTest {
 
     private static Course course;
+    private static Student john;
+    private static Student mark;
+    private static Student gly;
 
     @BeforeEach
     void setUp() {
         course = new Course("Java", 300);
+        john = new Student("john", "mark", "doe@hotmail.com");
+        mark = new Student("mark", "zergberg", "mark@gmail.com");
+        gly = new Student("gly", "glyman", "gly@yahoo.de");
     }
 
-    @Test
-    @DisplayName("Completed tasks show correctly")
-    void getCompletedTasks() {
-        course.addScore(0);
-        course.addScore(1);
-        course.addScore(-5);
-        course.addScore(50);
-        assertEquals(2, course.getCompletedTasks());
+    private void fillCourseWithStudents() {
+        course.addScore(john, 5);
+        course.addScore(john, 5);
+
+        course.addScore(mark, 5);
+        course.addScore(mark, 0);
+
+        course.addScore(gly, 8);
+        course.addScore(gly, -5);
     }
 
     @Test
@@ -33,17 +41,30 @@ class CourseTest {
     }
 
     @Test
-    void getScore() {
-        assertEquals(0, course.getScore());
+    @DisplayName("Completed tasks show correctly")
+    void getCompletedTasks() {
+        fillCourseWithStudents();
+        assertEquals(4, course.getCompletedTasks());
     }
 
     @Test
-    @DisplayName("Does not add negative numbers")
-    void addScore() {
-        course.addScore(5);
-        assertEquals(5, course.getScore());
-        course.addScore(-1);
-        assertEquals(5, course.getScore());
+    @DisplayName("Add correct number to student")
+    void showCorrectScoreNumber() {
+        fillCourseWithStudents();
+        assertEquals(10, course.getStudentScore(john));
+        assertEquals(5, course.getStudentScore(mark));
+        assertEquals(8, course.getStudentScore(gly));
+    }
+
+    @Test
+    @DisplayName("Show correct enrolled students")
+    void showCorrectEnrolledStudents() {
+        Set<Student> expected = Set.of(john, mark);
+        course.addScore(john, 5);
+        course.addScore(mark, 10);
+        course.addScore(gly, 0);
+
+        assertEquals(expected, course.getStudents());
     }
 
     @Test

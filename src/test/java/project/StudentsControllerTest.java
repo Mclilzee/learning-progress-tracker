@@ -9,8 +9,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import project.CoursesController.Courses;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class StudentsControllerTest {
@@ -63,7 +61,7 @@ class StudentsControllerTest {
         studentController.addStudent("John Doe johndoe@hotmail.com");
         studentController.addStudent("Mark Asm-ar Joe mark.asmar@hotmail.com");
         studentController.addStudent("John Doe jonathan@hotmail.com");
-        assertEquals(3, studentController.getStudentsNumber());
+        assertEquals(3, studentController.getStudents().size());
     }
 
     @Test
@@ -72,8 +70,8 @@ class StudentsControllerTest {
         studentController.addStudent("John doe john@hotmail.com");
         Exception e = assertThrows(IllegalArgumentException.class, () -> studentController.addStudent("Mark zergberg john@hotmail.com"));
         assertEquals("This email is already taken", e.getMessage());
-        assertEquals(1, studentController.getStudentsNumber());
-        assertEquals("John", studentController.getStudent(getEmailHash("john@hotmail.com")).getFirstName());
+        assertEquals(1, studentController.getStudents().size());
+        assertEquals("John", studentController.getStudent(String.valueOf(getEmailHash("john@hotmail.com"))).getFirstName());
     }
 
     @Test
@@ -83,8 +81,8 @@ class StudentsControllerTest {
         studentController.addStudent("Mark Zoigb-erg mark@gmail.com");
         Student john = new Student("John", "doe", "john@hotmail.com");
         Student mark = new Student("Mark", "Zoigb-erg", "mark@gmail.com");
-        assertEquals(studentController.getStudent(john.hashCode()).getEmail(), john.getEmail());
-        assertEquals(studentController.getStudent(mark.hashCode()).getEmail(), mark.getEmail());
+        assertEquals(studentController.getStudent(String.valueOf(john.hashCode())).getEmail(), john.getEmail());
+        assertEquals(studentController.getStudent(String.valueOf(mark.hashCode())).getEmail(), mark.getEmail());
     }
 
     @Test
@@ -96,69 +94,6 @@ class StudentsControllerTest {
         set.add(getEmailHash("John@hotmail.com"));
         set.add(getEmailHash("mark@gmail.com"));
         assertEquals(set, studentController.getStudentsIDSet());
-    }
-
-    @Test
-    @DisplayName("Show correct most popular courses")
-    void mostPopularCourse() {
-        Set<Course> mostPopular = Set.of(Courses.JAVA.getCourse(), Courses.SPRING.getCourse());
-        fillStudents();
-
-        assertEquals(mostPopular, studentController.getMostPopularCourses());
-    }
-
-    @Test
-    @DisplayName("Show correct least popular courses")
-    void leastPopularCourses() {
-        Set<Course> leastPopular = Set.of(Courses.DATABASES.getCourse());
-        fillStudents();
-
-        assertEquals(leastPopular, studentController.getLeastPopularCourses());
-    }
-
-    @Test
-    @DisplayName("Show correct highest activity set")
-    void highestActivityCourses() {
-        Set<Course> highestActivity = Set.of(Courses.JAVA.getCourse(), Courses.DSA.getCourse());
-        fillStudents();
-
-        assertEquals(highestActivity, studentController.getHighestActivityCourses());
-    }
-
-    @Test
-    @DisplayName("Show correct lowest activity set")
-    void lowestActivityCourses() {
-        Set<Course> lowestActivity = Set.of(Courses.DATABASES.getCourse());
-        fillStudents();
-
-        assertEquals(lowestActivity, studentController.getLowestActivityCourses());
-    }
-
-    private void fillStudents() {
-        studentController.addStudent("john doe john@hotmail.com");
-        studentController.addStudent("Khalil Markman khalil@gmail.com");
-        studentController.addStudent("Mark zergberg mark@hotmail.com");
-        studentController.addStudent("Glycen Glylo gly@gmail.com");
-
-        Student john = studentController.getStudent(getEmailHash("john@hotmail.com"));
-        john.addScores(new int[]{0, 5, 0, 20});
-        john.addScores(new int[]{0, 50, 0, 0});
-        john.addScores(new int[]{10, 5, 0, 0});
-
-        Student khalil = studentController.getStudent(getEmailHash("khalil@gmail.com"));
-        khalil.addScores(new int[]{5, 0, 6, 0});
-        khalil.addScores(new int[]{8, 0, 4, 0});
-        khalil.addScores(new int[]{7, 0, 5, 8});
-
-        Student mark = studentController.getStudent(getEmailHash("mark@hotmail.com"));
-        mark.addScores(new int[]{5, 5, 0, 10});
-        mark.addScores(new int[]{0, 5, 0, 0});
-        mark.addScores(new int[]{0, 5, 0, 0});
-
-        Student gly = studentController.getStudent(getEmailHash("gly@gmail.com"));
-        gly.addScores(new int[]{0, 0, 0, 7});
-        gly.addScores(new int[]{20, 0, 0, 6});
-        gly.addScores(new int[]{0, 0, 0, 0});
     }
 
     private int getEmailHash(String email) {

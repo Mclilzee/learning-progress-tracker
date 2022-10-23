@@ -37,7 +37,7 @@ public class Course {
     }
 
     public void addScore(Student student, int score) {
-        if (score <= 0) {
+        if (score <= 0 || student == null) {
             return;
         }
 
