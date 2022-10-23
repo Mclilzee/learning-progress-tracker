@@ -1,8 +1,8 @@
-package project;
+package project.statistics;
 
 import java.util.*;
 
-public class Course {
+class Course {
     private final String name;
     private int completedTasks;
     private final int completionScore;

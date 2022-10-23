@@ -1,10 +1,9 @@
-package project;
+package project.statistics;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.Set;
+import project.statistics.Student;
 
 import static org.junit.jupiter.api.Assertions.*;
 

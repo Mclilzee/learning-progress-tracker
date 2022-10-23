@@ -1,8 +1,10 @@
-package project;
+package project.statistics;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import project.statistics.Course;
+import project.statistics.Student;
 
 import java.util.Set;
 

@@ -1,44 +1,44 @@
-package project;
+package project.statistics;
 
 import java.util.Objects;
 
-public class Student {
+ class Student {
     private String firstName;
     private String lastName;
     private String email;
 
-    public Student(String firstName, String lastName, String email) {
+     Student(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
     }
 
-    public String getFirstName() {
+     String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+     void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public String getLastName() {
+     String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+     void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    public String getEmail() {
+     String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+     void setEmail(String email) {
         this.email = email;
     }
 
     @Override
-    public boolean equals(Object o) {
+     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
@@ -46,7 +46,7 @@ public class Student {
     }
 
     @Override
-    public int hashCode() {
+     public int hashCode() {
         return Math.abs(Objects.hash(email));
     }
 }

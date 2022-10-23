@@ -1,6 +1,9 @@
 package project;
 
+import project.statistics.Statistics;
+
 import java.util.Scanner;
+import java.util.Set;
 
 public class Main {
     private static final Scanner scanner = new Scanner(System.in);
@@ -30,7 +33,7 @@ public class Main {
                     handleStudentsAdding();
                     break;
                 case "list":
-                    statistics.printStudentsIDList();
+                    handleStudentsIDPrinting();
                     break;
                 case "add points":
                     addPointsToStudent();
@@ -47,16 +50,21 @@ public class Main {
 
     private static void handleStudentsAdding() {
         System.out.println("Enter student credentials or 'back' to return");
+        int count = 0;
         while (true) {
             String input = scanner.nextLine();
             if ("back".equalsIgnoreCase(input)) {
                 break;
             }
 
-            statistics.addStudent(input);
+            try {
+                statistics.addStudent(input);
+                count++;
+            } catch (IncorrectInput e) {
+                System.out.println(e.getMessage());
+            }
         }
-
-        statistics.printStudentsTotalAdded();
+        System.out.printf("Total %d student%s have been added.", count, count == 1 ? "" : "s");
     }
 
     private static void addPointsToStudent() {
@@ -67,7 +75,11 @@ public class Main {
                 break;
             }
 
-            statistics.addPointsToStudent(input);
+            try {
+                statistics.addPointsToStudent(input);
+            } catch (IncorrectInput e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
@@ -79,7 +91,23 @@ public class Main {
                 break;
             }
 
-            statistics.printStudentPointsInformation(input);
+            try {
+                statistics.printStudentPointsInformation(input);
+            } catch (IncorrectInput e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static void handleStudentsIDPrinting() {
+        Set<Integer> idSet = statistics.getStudentIDSet();
+        if (idSet.isEmpty()) {
+            System.out.println("No students found");
+            return;
+        }
+        System.out.println("Students:");
+        for (int id : idSet) {
+            System.out.println(id);
         }
     }
 }

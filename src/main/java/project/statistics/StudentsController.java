@@ -1,45 +1,43 @@
-package project;
+package project.statistics;
+
+import project.IncorrectInput;
 
 import java.util.*;
 
-public final class StudentsController {
+ final class StudentsController {
 
     private final Map<Integer, Student> students;
 
-    public StudentsController() {
+     StudentsController() {
         this.students = new LinkedHashMap<>();
     }
 
-    public Set<Integer> getStudentsIDSet() {
+     Set<Integer> getStudentsIDSet() {
         return this.students.keySet();
     }
 
-    public List<Student> getStudents() {
+     List<Student> getStudents() {
         return new ArrayList<>(students.values());
     }
 
-    public Student getStudent(String id) {
-        if (!id.matches("\\d+") || !students.containsKey(Integer.parseInt(id))) {
-            throw new IllegalArgumentException("No student is found for id=" + id);
-        }
-
-        return students.get(Integer.parseInt(id));
+     Student getStudent(int id) {
+        return students.get(id);
     }
 
-    public void addStudent(String input) throws IllegalArgumentException {
+     void addStudent(String input) throws IllegalArgumentException, IncorrectInput {
         Student student = getStudentObject(input);
 
         if (students.containsKey(student.hashCode())) {
-            throw new IllegalArgumentException("This email is already taken");
+            throw new IncorrectInput("This email is already taken");
         }
 
         students.put(student.hashCode(), student);
     }
 
-    private Student getStudentObject(String input) {
+    private Student getStudentObject(String input) throws IncorrectInput {
         String[] inputArray = input.split(" ");
         if (inputArray.length < 3) {
-            throw new IllegalArgumentException("Incorrect credentials");
+            throw new IncorrectInput("Incorrect credentials");
         }
 
         String firstName = inputArray[0];
@@ -51,20 +49,20 @@ public final class StudentsController {
             return student;
         }
 
-        throw new IllegalStateException();
+        throw new IncorrectInput("Incorrect credentials");
     }
 
-    private boolean isValidCredentials(Student student) {
+    private boolean isValidCredentials(Student student) throws IncorrectInput {
         if (!student.getFirstName().matches("([a-zA-Z][\\-']?)+[a-zA-Z]$")) {
-            throw new IllegalArgumentException("Incorrect first name");
+            throw new IncorrectInput("Incorrect first name");
         }
 
         if (!student.getLastName().matches("([a-zA-Z][\\-' ]?)+[a-zA-Z]$")) {
-            throw new IllegalArgumentException("Incorrect last name");
+            throw new IncorrectInput("Incorrect last name");
         }
 
         if (!student.getEmail().matches("[^@]+@[^@.]+\\.[^@.]+")) {
-            throw new IllegalArgumentException("Incorrect email");
+            throw new IncorrectInput("Incorrect email");
         }
 
         return true;

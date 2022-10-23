@@ -1,13 +1,13 @@
-package project;
+package project.statistics;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class CoursesController {
+class CoursesController {
 
     private final Course[] courses;
 
-    public CoursesController() {
+     CoursesController() {
         courses = new Course[Courses.values().length];
         int i = 0;
         for (Courses course : Courses.values()) {
@@ -16,11 +16,11 @@ public class CoursesController {
         }
     }
 
-    public int getNumberOfCourses() {
+     int getNumberOfCourses() {
         return this.courses.length;
     }
 
-    public void printStudentPoints(Student student) {
+     void printStudentPoints(Student student) {
         StringBuilder builder = new StringBuilder().append(student.hashCode()).append(" points:");
         for (int i = 0; i < courses.length; i++) {
             builder.append(" ").append(courses[i].getName()).append("=").append(courses[i].getStudentScore(student));
@@ -32,28 +32,28 @@ public class CoursesController {
         System.out.println(builder);
     }
 
-    public void addPointsToStudent(Student student, int[] scores) {
+     void addPointsToStudent(Student student, int[] scores) {
         for (int i = 0; i < courses.length; i++) {
             courses[i].addScore(student, scores[i]);
         }
     }
 
-    public Set<Course> getMostPopularCourses() {
+     Set<Course> getMostPopularCourses() {
         int mostPopularCount = Arrays.stream(courses).mapToInt(course -> course.getStudents().size()).max().orElse(0);
         return Arrays.stream(courses).filter(course -> course.getStudents().size() == mostPopularCount).collect(Collectors.toSet());
     }
 
-    public Set<Course> getLeastPopularCourses() {
+     Set<Course> getLeastPopularCourses() {
         int leastPopularCount = Arrays.stream(courses).mapToInt(course -> course.getStudents().size()).min().orElse(0);
         return Arrays.stream(courses).filter(course -> course.getStudents().size() == leastPopularCount).collect(Collectors.toSet());
     }
 
-    public Set<Course> getHighestActivityCourses() {
+     Set<Course> getHighestActivityCourses() {
         int highestActivityCount = Arrays.stream(courses).mapToInt(Course::getCompletedTasks).max().orElse(0);
         return Arrays.stream(courses).filter(course -> course.getStudents().size() == highestActivityCount).collect(Collectors.toSet());
     }
 
-    public Set<Course> getLowestActivityCourses() {
+     Set<Course> getLowestActivityCourses() {
         int lowestActivityCount = Arrays.stream(courses).mapToInt(Course::getCompletedTasks).min().orElse(0);
         return Arrays.stream(courses).filter(course -> course.getStudents().size() == lowestActivityCount).collect(Collectors.toSet());
     }
@@ -72,7 +72,7 @@ public class CoursesController {
             this.completionScore = completionScore;
         }
 
-        public Course getCourse() {
+         Course getCourse() {
             return new Course(this.name, this.completionScore);
         }
     }
