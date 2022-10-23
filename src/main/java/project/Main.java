@@ -68,7 +68,7 @@ public class Main {
                 System.out.println(e.getMessage());
             }
         }
-        System.out.printf("Total %d student%s have been added.", count, count == 1 ? "" : "s");
+        System.out.printf("Total %d student%s have been added.\n", count, count == 1 ? "" : "s");
     }
 
     private static void addPointsToStudent() {
@@ -118,19 +118,21 @@ public class Main {
 
     private static void printStatistics() {
         System.out.println("Type the name of a course to see details or 'back to quit:");
+        printOverAllStatistics();
         while (true) {
             String input = scanner.nextLine();
             if ("back".equalsIgnoreCase(input)) {
                 break;
             }
-
-            if (input.isBlank()) {
-                printOverAllStatistics();
-            }
         }
     }
 
     private static void printOverAllStatistics() {
+        System.out.printf("Most popular: %s\n", statistics.getMostPopularCourses());
+        System.out.printf("Least popular:: %s\n", statistics.getLeastPopularCourses());
+        System.out.printf("Highest activity: %s\n", statistics.getHighestActivityCourses());
+        System.out.printf("Lowest activity: %s\n", statistics.getLowestActivityCourses());
+        System.out.printf("Easiest course: %s\n", statistics.getEasiestCourses());
+        System.out.printf("Hardest course: %s\n", statistics.getHardestCourses());
     }
-
 }
