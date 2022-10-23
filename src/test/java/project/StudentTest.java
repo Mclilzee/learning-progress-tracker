@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class StudentTest {
@@ -102,6 +104,10 @@ class StudentTest {
         assertEquals(0, student.getEnrolledCourseSet().size());
         student.addScores(new int[]{1, 0, 0, 1});
         assertEquals(2, student.getEnrolledCourseSet().size());
-        assertTrue(student.getEnrolledCourseSet().contains("Java"));
+
+        Set<Course> enrolledCourses = student.getEnrolledCourseSet();
+        assertTrue(enrolledCourses.contains(Courses.JAVA.getCourse()));
+        assertTrue(enrolledCourses.contains(Courses.SPRING.getCourse()));
+        assertFalse(enrolledCourses.contains(Courses.DATABASES.getCourse()));
     }
 }
