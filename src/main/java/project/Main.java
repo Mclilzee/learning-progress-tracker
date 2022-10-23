@@ -1,6 +1,5 @@
 package project;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -58,7 +57,6 @@ public class Main {
         }
 
         statistics.printStudentsTotalAdded();
-
     }
 
     private static void addPointsToStudent() {
@@ -69,21 +67,7 @@ public class Main {
                 break;
             }
 
-            if (!input.matches("\\d+( \\d+){4}")) {
-                System.out.println("Incorrect points format");
-                continue;
-            }
-
-            int[] inputNumbers = Arrays.stream(input.split(" ")).mapToInt(Integer::parseInt).toArray();
-
-            Student student = studentsController.getStudent(inputNumbers[0]);
-            if (student == null) {
-                System.out.println("No student is found for id=" + inputNumbers[0]);
-                continue;
-            }
-
-            student.addScores(Arrays.stream(inputNumbers).skip(1).toArray());
-            System.out.println("Points updated.");
+            statistics.addPointsToStudent(input);
         }
     }
 
@@ -95,17 +79,7 @@ public class Main {
                 break;
             }
 
-            if (!input.matches("\\d+")) {
-                System.out.println("Incorrect student id format");
-                continue;
-            }
-
-            Student student = studentsController.getStudent(Integer.parseInt(input));
-            if (student == null) {
-                System.out.println("No student is found for id=" + input);
-            } else {
-                System.out.println(student);
-            }
+            statistics.printStudentPointsInformation(input);
         }
     }
 }

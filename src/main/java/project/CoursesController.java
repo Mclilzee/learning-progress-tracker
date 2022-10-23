@@ -16,9 +16,16 @@ public class CoursesController {
         }
     }
 
-    private void printStudentScores(List<Student> students) {
-        for (Student student : students) {
+    public void printStudentPoints(Student student) {
+        StringBuilder builder = new StringBuilder(student.hashCode()).append(" points:");
+        for (int i = 0; i < courses.length; i++) {
+            builder.append(" ").append(courses[i].getName()).append("=").append(courses[i].getStudentScore(student));
+
+            if (i != courses.length - 1) {
+                builder.append(";");
+            }
         }
+        System.out.println(builder);
     }
 
     public void addPointsToStudent(Student student, int[] scores) {
@@ -26,26 +33,23 @@ public class CoursesController {
     }
 
     public Set<Course> getMostPopularCourses() {
-        int mostPopularCourseCount = Arrays.stream(courses).mapToInt(course -> course.getStudents().size()).max().orElse(0);
-        return Arrays.stream(courses).filter(course -> course.getStudents().size() == mostPopularCourseCount).collect(Collectors.toSet());
+        int mostPopularCount = Arrays.stream(courses).mapToInt(course -> course.getStudents().size()).max().orElse(0);
+        return Arrays.stream(courses).filter(course -> course.getStudents().size() == mostPopularCount).collect(Collectors.toSet());
     }
 
     public Set<Course> getLeastPopularCourses() {
-        int leastPopularCount = coursesEnrollment.values().stream().min(Integer::compareTo).orElse(0);
-
-        return getFilteredCoursesSet(coursesEnrollment, leastPopularCount);
+        int leastPopularCount = Arrays.stream(courses).mapToInt(course -> course.getStudents().size()).min().orElse(0);
+        return Arrays.stream(courses).filter(course -> course.getStudents().size() == leastPopularCount).collect(Collectors.toSet());
     }
 
     public Set<Course> getHighestActivityCourses() {
-        int highestActivity = coursesActivity.values().stream().max(Integer::compareTo).orElse(0);
-
-        return getFilteredCoursesSet(coursesActivity, highestActivity);
+        int highestActivityCount = Arrays.stream(courses).mapToInt(Course::getCompletedTasks).max().orElse(0);
+        return Arrays.stream(courses).filter(course -> course.getStudents().size() == highestActivityCount).collect(Collectors.toSet());
     }
 
     public Set<Course> getLowestActivityCourses() {
-        int lowestActivity = courseActivity.values().stream().min(Integer::compareTo).orElse(0);
-
-        return getFilteredCoursesSet(courseActivity, lowestActivity);
+        int lowestActivityCount = Arrays.stream(courses).mapToInt(Course::getCompletedTasks).min().orElse(0);
+        return Arrays.stream(courses).filter(course -> course.getStudents().size() == lowestActivityCount).collect(Collectors.toSet());
     }
 
     enum Courses {

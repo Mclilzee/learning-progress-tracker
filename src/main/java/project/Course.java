@@ -24,6 +24,10 @@ public class Course {
         return completionScore;
     }
 
+    public int getCompletedTasks() {
+        return this.completedTasks;
+    }
+
     public Set<Student> getStudents() {
         return this.students.keySet();
     }

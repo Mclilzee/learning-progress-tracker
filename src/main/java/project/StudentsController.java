@@ -18,8 +18,12 @@ public final class StudentsController {
         return new ArrayList<>(students.values());
     }
 
-    public Student getStudent(int id) {
-        return students.get(id);
+    public Student getStudent(String id) {
+        if (!id.matches("\\d+") || !students.containsKey(Integer.parseInt(id))) {
+            throw new IllegalArgumentException("No student is found for id=" + id);
+        }
+
+        return students.get(Integer.parseInt(id));
     }
 
     public void addStudent(String input) throws IllegalArgumentException {
