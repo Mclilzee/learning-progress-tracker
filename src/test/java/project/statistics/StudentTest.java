@@ -78,12 +78,4 @@ class StudentTest {
         Student student2 = new Student("Mark", "Zoigberg", "Johndoe@hotmail.com");
         assertEquals(student.hashCode(), student2.hashCode());
     }
-
-    @Test
-    @DisplayName("Student prints correct score format")
-    void printScoreFormat() {
-        int hash = student.hashCode();
-        String expected = String.format("%d points: Java=0; DSA=0; Databases=0; Spring=0", hash);
-        assertEquals(expected, student.toString());
-    }
 }
