@@ -102,66 +102,66 @@ class StatisticsTest {
     @Test
     @DisplayName("Show correct most popular courses")
     void mostPopularCourse() throws IncorrectInput {
-        Set<Course> mostPopular = Set.of(Courses.JAVA.getCourse(), Courses.SPRING.getCourse());
+        String expected = Courses.JAVA.getName() + ", " + Courses.SPRING.getName();
         fillStudents();
 
-        assertEquals(mostPopular, statistics.getMostPopularCourses());
+        assertEquals(expected, statistics.getMostPopularCourses());
     }
 
     @Test
     @DisplayName("Show correct least popular courses")
     void leastPopularCourses() throws IncorrectInput {
-        Set<Course> leastPopular = Set.of(Courses.DATABASES.getCourse());
+        String expected = Courses.DATABASES.getName();
         fillStudents();
 
-        assertEquals(leastPopular, statistics.getLeastPopularCourses());
+        assertEquals(expected, statistics.getLeastPopularCourses());
     }
 
     @Test
     @DisplayName("Show correct highest activity set")
     void highestActivityCourses() throws IncorrectInput {
-        Set<Course> highestActivity = Set.of(Courses.JAVA.getCourse(), Courses.DSA.getCourse());
+        String expected = Courses.JAVA.getName() + ", " + Courses.DSA.getName();
         fillStudents();
 
-        assertEquals(highestActivity, statistics.getHighestActivityCourses());
+        assertEquals(expected, statistics.getHighestActivityCourses());
     }
 
     @Test
     @DisplayName("Show correct lowest activity set")
     void lowestActivityCourses() throws IncorrectInput {
-        Set<Course> lowestActivity = Set.of(Courses.DATABASES.getCourse());
+        String expected = Courses.DATABASES.getName();
         fillStudents();
 
-        assertEquals(lowestActivity, statistics.getLowestActivityCourses());
+        assertEquals(expected, statistics.getLowestActivityCourses());
     }
 
     @Test
     @DisplayName("Show correct easiest courses")
     void easiestCourses() throws IncorrectInput {
-        Set<Course> easiest = Set.of(Courses.DSA.getCourse());
+        String expected = Courses.DSA.getName();
         fillStudents();
 
-        assertEquals(easiest, statistics.getEasiestCourses());
+        assertEquals(expected, statistics.getEasiestCourses());
     }
 
     @Test
     @DisplayName("Show correct hardest courses")
     void hardestCourses() throws IncorrectInput {
-        Set<Course> hardest = Set.of(Courses.SPRING.getCourse());
+        String expected = Courses.SPRING.getName();
         fillStudents();
 
-        assertEquals(hardest, statistics.getHardestCourses());
+        assertEquals(expected, statistics.getHardestCourses());
     }
 
     @Test
     @DisplayName("Return empty set if no students enrolled")
     void noEnrollment() {
-        assertEquals(Set.of(), statistics.getMostPopularCourses());
-        assertEquals(Set.of(), statistics.getLeastPopularCourses());
-        assertEquals(Set.of(), statistics.getHighestActivityCourses());
-        assertEquals(Set.of(), statistics.getLowestActivityCourses());
-        assertEquals(Set.of(), statistics.getEasiestCourses());
-        assertEquals(Set.of(), statistics.getHardestCourses());
+        assertEquals("n/a", statistics.getMostPopularCourses());
+        assertEquals("n/a", statistics.getLeastPopularCourses());
+        assertEquals("n/a", statistics.getHighestActivityCourses());
+        assertEquals("n/a", statistics.getLowestActivityCourses());
+        assertEquals("n/a", statistics.getEasiestCourses());
+        assertEquals("n/a", statistics.getHardestCourses());
     }
 
     private void fillStudents() throws IncorrectInput {

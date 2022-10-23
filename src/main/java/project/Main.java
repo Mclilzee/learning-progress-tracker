@@ -41,6 +41,9 @@ public class Main {
                 case "find":
                     printStudentPointsInformation();
                     break;
+                case "statistics":
+                    printStatistics();
+                    break;
                 default:
                     System.out.println("unknown command!");
                     break;
@@ -112,4 +115,22 @@ public class Main {
             System.out.println(id);
         }
     }
+
+    private static void printStatistics() {
+        System.out.println("Type the name of a course to see details or 'back to quit:");
+        while (true) {
+            String input = scanner.nextLine();
+            if ("back".equalsIgnoreCase(input)) {
+                break;
+            }
+
+            if (input.isBlank()) {
+                printOverAllStatistics();
+            }
+        }
+    }
+
+    private static void printOverAllStatistics() {
+    }
+
 }

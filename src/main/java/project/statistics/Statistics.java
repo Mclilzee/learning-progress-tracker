@@ -3,7 +3,9 @@ package project.statistics;
 import project.IncorrectInput;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Statistics {
 
@@ -54,27 +56,52 @@ public class Statistics {
         }
     }
 
-    public Set<Course> getMostPopularCourses() {
-        return coursesController.getMostPopularCourses();
+    public String getMostPopularCourses() {
+        List<Course> courses = coursesController.getMostPopularCourses();
+        if (courses.isEmpty()) {
+            return "n/a";
+        }
+
+        return courses.stream().map(Course::getName).collect(Collectors.joining(", "));
     }
 
-    public Set<Course> getLeastPopularCourses() {
-        return coursesController.getLeastPopularCourses();
+    public String getLeastPopularCourses() {
+        List<Course> courses = coursesController.getLeastPopularCourses();
+        if (courses.isEmpty()) {
+            return "n/a";
+        }
+        return courses.stream().map(Course::getName).collect(Collectors.joining(", "));
     }
 
-    public Set<Course> getHighestActivityCourses() {
-        return coursesController.getHighestActivityCourses();
+    public String getHighestActivityCourses() {
+        List<Course> courses = coursesController.getHighestActivityCourses();
+        if (courses.isEmpty()) {
+            return "n/a";
+        }
+        return courses.stream().map(Course::getName).collect(Collectors.joining(", "));
     }
 
-    public Set<Course> getLowestActivityCourses() {
-        return coursesController.getLowestActivityCourses();
+    public String getLowestActivityCourses() {
+        List<Course> courses = coursesController.getLowestActivityCourses();
+        if (courses.isEmpty()) {
+            return "n/a";
+        }
+        return courses.stream().map(Course::getName).collect(Collectors.joining(", "));
     }
 
-    public Set<Course> getEasiestCourses() {
-        return coursesController.getEasiestCourses();
+    public String getEasiestCourses() {
+        List<Course> courses = coursesController.getEasiestCourses();
+        if (courses.isEmpty()) {
+            return "n/a";
+        }
+        return courses.stream().map(Course::getName).collect(Collectors.joining(", "));
     }
 
-    public Set<Course> getHardestCourses() {
-        return coursesController.getHardestCourses();
+    public String getHardestCourses() {
+        List<Course> courses = coursesController.getHardestCourses();
+        if (courses.isEmpty()) {
+            return "n/a";
+        }
+        return courses.stream().map(Course::getName).collect(Collectors.joining(", "));
     }
 }

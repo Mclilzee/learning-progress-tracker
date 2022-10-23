@@ -38,40 +38,40 @@ class CoursesController {
         }
     }
 
-    Set<Course> getMostPopularCourses() {
+    List<Course> getMostPopularCourses() {
         int mostPopularCount = Arrays.stream(courses).mapToInt(course -> course.getStudents().size()).max().orElse(-1);
-        Set<Course> enrolled = Arrays.stream(courses).filter(course -> course.getStudents().size() == mostPopularCount).collect(Collectors.toSet());
-        return enrolled.size() != 4 ? enrolled : Set.of();
+        List<Course> enrolled = Arrays.stream(courses).filter(course -> course.getStudents().size() == mostPopularCount).collect(Collectors.toList());
+        return enrolled.size() != 4 ? enrolled : List.of();
     }
 
-    Set<Course> getLeastPopularCourses() {
+    List<Course> getLeastPopularCourses() {
         int leastPopularCount = Arrays.stream(courses).mapToInt(course -> course.getStudents().size()).min().orElse(-1);
-        Set<Course> enrolled = Arrays.stream(courses).filter(course -> course.getStudents().size() == leastPopularCount).collect(Collectors.toSet());
-        return enrolled.size() != 4 ? enrolled : Set.of();
+        List<Course> enrolled = Arrays.stream(courses).filter(course -> course.getStudents().size() == leastPopularCount).collect(Collectors.toList());
+        return enrolled.size() != 4 ? enrolled : List.of();
     }
 
-    Set<Course> getHighestActivityCourses() {
+    List<Course> getHighestActivityCourses() {
         int highestActivityCount = Arrays.stream(courses).mapToInt(Course::getCompletedTasks).max().orElse(-1);
-        Set<Course> activity = Arrays.stream(courses).filter(course -> course.getCompletedTasks() == highestActivityCount).collect(Collectors.toSet());
-        return activity.size() != 4 ? activity : Set.of();
+        List<Course> activity = Arrays.stream(courses).filter(course -> course.getCompletedTasks() == highestActivityCount).collect(Collectors.toList());
+        return activity.size() != 4 ? activity : List.of();
     }
 
-    Set<Course> getLowestActivityCourses() {
+    List<Course> getLowestActivityCourses() {
         int lowestActivityCount = Arrays.stream(courses).mapToInt(Course::getCompletedTasks).min().orElse(-1);
-        Set<Course> activity = Arrays.stream(courses).filter(course -> course.getCompletedTasks() == lowestActivityCount).collect(Collectors.toSet());
-        return activity.size() != 4 ? activity : Set.of();
+        List<Course> activity = Arrays.stream(courses).filter(course -> course.getCompletedTasks() == lowestActivityCount).collect(Collectors.toList());
+        return activity.size() != 4 ? activity : List.of();
     }
 
-    Set<Course> getEasiestCourses() {
+    List<Course> getEasiestCourses() {
         double highestAverage = Arrays.stream(courses).mapToDouble(Course::getAverageScores).max().orElse(-1);
-        Set<Course> average = Arrays.stream(courses).filter(course -> course.getAverageScores() == highestAverage).collect(Collectors.toSet());
-        return average.size() != 4 ? average : Set.of();
+        List<Course> average = Arrays.stream(courses).filter(course -> course.getAverageScores() == highestAverage).collect(Collectors.toList());
+        return average.size() != 4 ? average : List.of();
     }
 
-    Set<Course> getHardestCourses() {
+    List<Course> getHardestCourses() {
         double lowestAverage = Arrays.stream(courses).mapToDouble(Course::getAverageScores).min().orElse(-1);
-        Set<Course> average = Arrays.stream(courses).filter(course -> course.getAverageScores() == lowestAverage).collect(Collectors.toSet());
-        return average.size() != 4 ? average : Set.of();
+        List<Course> average = Arrays.stream(courses).filter(course -> course.getAverageScores() == lowestAverage).collect(Collectors.toList());
+        return average.size() != 4 ? average : List.of();
     }
 
     enum Courses {
@@ -86,6 +86,10 @@ class CoursesController {
         Courses(String name, int completionScore) {
             this.name = name;
             this.completionScore = completionScore;
+        }
+
+        String getName() {
+            return this.name;
         }
 
         Course getCourse() {
