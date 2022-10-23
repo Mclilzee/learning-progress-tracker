@@ -23,14 +23,14 @@ public class StudentsController {
     }
 
     public Set<Course> getMostPopularCourses() {
-        Map<Course, Integer> coursesEnrollment = getCoursesEnrollment();
+        Map<Course, Integer> coursesEnrollment = getCoursesEnrollments();
         int mostPopularCount = coursesEnrollment.values().stream().max(Integer::compareTo).orElse(0);
 
         return getFilteredCoursesSet(coursesEnrollment, mostPopularCount);
     }
 
     public Set<Course> getLeastPopularCourses() {
-        Map<Course, Integer> coursesEnrollment = getCoursesEnrollment();
+        Map<Course, Integer> coursesEnrollment = getCoursesEnrollments();
         int leastPopularCount = coursesEnrollment.values().stream().min(Integer::compareTo).orElse(0);
 
         return getFilteredCoursesSet(coursesEnrollment, leastPopularCount);
@@ -47,7 +47,7 @@ public class StudentsController {
         return set;
     }
 
-    private Map<Course, Integer> getCoursesEnrollment() {
+    private Map<Course, Integer> getCoursesEnrollments() {
         Map<Course, Integer> courses = new LinkedHashMap<>();
         for (Student student : students.values()) {
             addEachCourseEnrollment(student, courses);

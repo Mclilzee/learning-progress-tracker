@@ -120,14 +120,18 @@ class StudentsControllerTest {
     private void fillStudents() {
         Student john = new Student("john", "doe", "john@hotmail.com");
         studentController.addStudent("john doe john@hotmail.com");
-        studentController.getStudent(john.hashCode()).addScores(new int[]{1, 0, 0, 1});
+        studentController.getStudent(john.hashCode()).addScores(new int[]{5, 0, 0, 10});
 
         Student khalil = new Student("Khalil", "Markman", "khalil@gmail.com");
         studentController.addStudent("Khalil Markman khalil@gmail.com");
-        studentController.getStudent(khalil.hashCode()).addScores(new int[]{1, 0, 1, 1});
+        studentController.getStudent(khalil.hashCode()).addScores(new int[]{10, 0, 2, 5});
 
         Student mark = new Student("Mark", "zergberg", "mark@hotmail.com");
         studentController.addStudent("Mark zergberg mark@hotmail.com");
-        studentController.getStudent(mark.hashCode()).addScores(new int[]{1, 0, 0, 1});
+        studentController.getStudent(mark.hashCode()).addScores(new int[]{6, 6, 0, 6});
+
+        Student gly = new Student("Glycen", "Glylo", "gly@gmail.com");
+        studentController.addStudent("Glycen Glylo gly@gmail.com");
+        studentController.getStudent(gly.hashCode()).addScores(new int[]{0, 2, 0, 0});
     }
 }
