@@ -16,8 +16,12 @@ public class CoursesController {
         }
     }
 
+    public int getNumberOfCourses() {
+        return this.courses.length;
+    }
+
     public void printStudentPoints(Student student) {
-        StringBuilder builder = new StringBuilder(student.hashCode()).append(" points:");
+        StringBuilder builder = new StringBuilder().append(student.hashCode()).append(" points:");
         for (int i = 0; i < courses.length; i++) {
             builder.append(" ").append(courses[i].getName()).append("=").append(courses[i].getStudentScore(student));
 
@@ -29,7 +33,9 @@ public class CoursesController {
     }
 
     public void addPointsToStudent(Student student, int[] scores) {
-
+        for (int i = 0; i < courses.length; i++) {
+            courses[i].addScore(student, scores[i]);
+        }
     }
 
     public Set<Course> getMostPopularCourses() {

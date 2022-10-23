@@ -49,7 +49,7 @@ public class Statistics {
 
     public void addPointsToStudent(String arguments) {
         String[] input = arguments.split(" ");
-        if (input.length != 5) {
+        if (input.length != coursesController.getNumberOfCourses() + 1) {
             System.out.println("Incorrect points format");
             return;
         }
