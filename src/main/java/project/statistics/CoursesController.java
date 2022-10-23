@@ -63,11 +63,15 @@ class CoursesController {
     }
 
     Set<Course> getEasiestCourses() {
-        return null;
+        double highestAverage = Arrays.stream(courses).mapToDouble(Course::getAverageScores).max().orElse(-1);
+        Set<Course> average = Arrays.stream(courses).filter(course -> course.getAverageScores() == highestAverage).collect(Collectors.toSet());
+        return average.size() != 4 ? average : Set.of();
     }
 
     Set<Course> getHardestCourses() {
-        return null;
+        double lowestAverage = Arrays.stream(courses).mapToDouble(Course::getAverageScores).min().orElse(-1);
+        Set<Course> average = Arrays.stream(courses).filter(course -> course.getAverageScores() == lowestAverage).collect(Collectors.toSet());
+        return average.size() != 4 ? average : Set.of();
     }
 
     enum Courses {

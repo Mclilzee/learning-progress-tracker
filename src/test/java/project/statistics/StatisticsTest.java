@@ -136,6 +136,24 @@ class StatisticsTest {
     }
 
     @Test
+    @DisplayName("Show correct easiest courses")
+    void easiestCourses() throws IncorrectInput {
+        Set<Course> easiest = Set.of(Courses.DSA.getCourse());
+        fillStudents();
+
+        assertEquals(easiest, statistics.getEasiestCourses());
+    }
+
+    @Test
+    @DisplayName("Show correct hardest courses")
+    void hardestCourses() throws IncorrectInput {
+        Set<Course> hardest = Set.of(Courses.SPRING.getCourse());
+        fillStudents();
+
+        assertEquals(hardest, statistics.getHardestCourses());
+    }
+
+    @Test
     @DisplayName("Return empty set if no students enrolled")
     void noEnrollment() {
         assertEquals(Set.of(), statistics.getMostPopularCourses());
