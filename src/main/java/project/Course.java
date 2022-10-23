@@ -3,9 +3,11 @@ package project;
 public class Course {
     private String name;
     private int score;
+    private int completionScore;
 
-    public Course(String name) {
+    public Course(String name, int completionScore) {
         this.name = name;
+        this.completionScore = completionScore;
     }
 
     public String getName() {
@@ -14,6 +16,10 @@ public class Course {
 
     public int getScore() {
         return score;
+    }
+
+    public int getCompletionScore() {
+        return completionScore;
     }
 
     public void addScore(int score) {

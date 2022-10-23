@@ -12,7 +12,8 @@ public class Student {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.courses = new Course[]{new Course("Java"), new Course("DSA"), new Course("Databases"), new Course("Spring")};
+        this.courses = new Course[]{new Course("Java", 600), new Course("DSA", 400),
+                new Course("Databases", 480), new Course("Spring", 550)};
     }
 
     public String getFirstName() {

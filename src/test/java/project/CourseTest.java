@@ -12,7 +12,7 @@ class CourseTest {
 
     @BeforeEach
     void setUp() {
-        course = new Course("Java");
+        course = new Course("Java", 300);
     }
 
     @Test
@@ -32,5 +32,11 @@ class CourseTest {
         assertEquals(5, course.getScore());
         course.addScore(-1);
         assertEquals(5, course.getScore());
+    }
+
+    @Test
+    @DisplayName("Completion score show correctly")
+    void getCompletionScore() {
+        assertEquals(300, course.getCompletionScore());
     }
 }
