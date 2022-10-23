@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Main {
     private static final Scanner scanner = new Scanner(System.in);
-    private static final StudentsController studentsController = new StudentsController();
+    private static final Statistics statistics = new Statistics();
 
     public static void main(String[] args) {
         optionsMenu();
@@ -31,7 +31,7 @@ public class Main {
                     handleStudentsAdding();
                     break;
                 case "list":
-                    printStudentsIDList();
+                    statistics.printStudentsIDList();
                     break;
                 case "add points":
                     addPointsToStudent();
@@ -54,28 +54,11 @@ public class Main {
                 break;
             }
 
-            try {
-                studentsController.addStudent(input);
-                System.out.println("The student has been added.");
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+            statistics.addStudent(input);
         }
 
-        int totalSize = studentsController.getStudentsNumber();
-        System.out.printf("Total %d student%s have been added.\n", totalSize, totalSize == 1 ? "" : "s");
-    }
+        statistics.printStudentsTotalAdded();
 
-    private static void printStudentsIDList() {
-        if (studentsController.getStudentsNumber() == 0) {
-            System.out.println("No students found");
-            return;
-        }
-
-        System.out.println("Students:");
-        for (int id : studentsController.getStudentsIDSet()) {
-            System.out.println(id);
-        }
     }
 
     private static void addPointsToStudent() {

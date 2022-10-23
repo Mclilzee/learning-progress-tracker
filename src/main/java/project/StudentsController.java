@@ -10,12 +10,12 @@ public final class StudentsController {
         this.students = new LinkedHashMap<>();
     }
 
-    public int getStudentsNumber() {
-        return students.size();
-    }
-
     public Set<Integer> getStudentsIDSet() {
         return this.students.keySet();
+    }
+
+    public List<Student> getStudents() {
+        return new ArrayList<>(students.values());
     }
 
     public Student getStudent(int id) {

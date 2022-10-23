@@ -33,6 +33,10 @@ public class Course {
     }
 
     public void addScore(Student student, int score) {
+        if (score <= 0) {
+            return;
+        }
+
         students.put(student, students.getOrDefault(student, 0) + score);
         completedTasks++;
     }

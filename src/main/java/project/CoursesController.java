@@ -5,28 +5,29 @@ import java.util.stream.Collectors;
 
 public class CoursesController {
 
-    private final Set<Course> courses;
+    private final Course[] courses;
 
     public CoursesController() {
-        courses = new LinkedHashSet<>();
-        Arrays.stream(Courses.values()).forEach(course -> courses.add(course.getCourse()));
-    }
-
-    private void printStudentsScores() {
-        for (Course course : courses) {
-            printStudentScoresForCourse(course);
+        courses = new Course[Courses.values().length];
+        int i = 0;
+        for (Courses course : Courses.values()) {
+            courses[i] = course.getCourse();
+            i++;
         }
-
     }
 
-    private void printStudentScoresForCourse(Course course) {
-        int score = course.getStudentScore(student);
+    private void printStudentScores(List<Student> students) {
+        for (Student student : students) {
+        }
     }
 
+    public void addPointsToStudent(Student student, int[] scores) {
+
+    }
 
     public Set<Course> getMostPopularCourses() {
-        int mostPopularCourseCount = courses.stream().mapToInt(course -> course.getStudents().size()).max().orElse(0);
-        return courses.stream().filter(course -> course.getStudents().size() == mostPopularCourseCount).collect(Collectors.toSet());
+        int mostPopularCourseCount = Arrays.stream(courses).mapToInt(course -> course.getStudents().size()).max().orElse(0);
+        return Arrays.stream(courses).filter(course -> course.getStudents().size() == mostPopularCourseCount).collect(Collectors.toSet());
     }
 
     public Set<Course> getLeastPopularCourses() {
