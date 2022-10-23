@@ -11,6 +11,8 @@ import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import project.statistics.CoursesController.Courses;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class StatisticsTest {
@@ -95,6 +97,65 @@ class StatisticsTest {
         set.add(getEmailHash("John@hotmail.com"));
         set.add(getEmailHash("mark@gmail.com"));
         assertEquals(set, statistics.getStudentIDSet());
+    }
+
+    @Test
+    @DisplayName("Show correct most popular courses")
+    void mostPopularCourse() throws IncorrectInput {
+        Set<Course> mostPopular = Set.of(Courses.JAVA.getCourse(), Courses.SPRING.getCourse());
+        fillStudents();
+
+        assertEquals(mostPopular, statistics.getMostPopularCourses());
+    }
+
+    @Test
+    @DisplayName("Show correct least popular courses")
+    void leastPopularCourses() throws IncorrectInput {
+        Set<Course> leastPopular = Set.of(Courses.DATABASES.getCourse());
+        fillStudents();
+
+        assertEquals(leastPopular, statistics.getLeastPopularCourses());
+    }
+
+    @Test
+    @DisplayName("Show correct highest activity set")
+    void highestActivityCourses() throws IncorrectInput {
+        Set<Course> highestActivity = Set.of(Courses.JAVA.getCourse(), Courses.DSA.getCourse());
+        fillStudents();
+
+        assertEquals(highestActivity, statistics.getHighestActivityCourses());
+    }
+
+    @Test
+    @DisplayName("Show correct lowest activity set")
+    void lowestActivityCourses() throws IncorrectInput {
+        Set<Course> lowestActivity = Set.of(Courses.DATABASES.getCourse());
+        fillStudents();
+
+        assertEquals(lowestActivity, statistics.getLowestActivityCourses());
+    }
+
+    private void fillStudents() throws IncorrectInput {
+        statistics.addStudent("john doe john@hotmail.com");
+        statistics.addStudent("Khalil Markman khalil@gmail.com");
+        statistics.addStudent("Mark zergberg mark@hotmail.com");
+        statistics.addStudent("Glycen Glylo gly@gmail.com");
+
+        statistics.addPointsToStudent(getEmailHashString("john@hotmail.com") + " 0 5 0 20");
+        statistics.addPointsToStudent(getEmailHashString("john@hotmail.com") + " 0 50 0 0");
+        statistics.addPointsToStudent(getEmailHashString("john@hotmail.com") + " 10 5 0 0");
+
+        statistics.addPointsToStudent(getEmailHashString("khalil@gmail.com") + " 5 0 6 0");
+        statistics.addPointsToStudent(getEmailHashString("khalil@gmail.com") + " 8 0 4 0");
+        statistics.addPointsToStudent(getEmailHashString("khalil@gmail.com") + " 7 0 5 8");
+
+        statistics.addPointsToStudent(getEmailHashString("mark@hotmail.com") + " 5 5 0 10");
+        statistics.addPointsToStudent(getEmailHashString("mark@hotmail.com") + " 0 5 0 0");
+        statistics.addPointsToStudent(getEmailHashString("mark@hotmail.com") + " 0 5 0 0");
+
+        statistics.addPointsToStudent(getEmailHashString("gly@gmail.com") + " 0 0 0 7");
+        statistics.addPointsToStudent(getEmailHashString("gly@gmail.com") + " 20 0 0 6");
+        statistics.addPointsToStudent(getEmailHashString("gly@gmail.com") + " 0 0 0 0");
     }
 
     private int getEmailHash(String email) {

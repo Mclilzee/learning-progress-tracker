@@ -4,6 +4,7 @@ import project.IncorrectInput;
 
 import java.util.Arrays;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Statistics {
 
@@ -29,7 +30,6 @@ public class Statistics {
 
     public void addStudent(String input) throws IncorrectInput {
         studentsController.addStudent(input);
-        System.out.println("The student has been added");
     }
 
     public Set<Integer> getStudentIDSet() {
@@ -51,9 +51,24 @@ public class Statistics {
         Student student = getStudent(input[0]);
         try {
             coursesController.addPointsToStudent(student, Arrays.stream(input).skip(1).mapToInt(Integer::parseInt).toArray());
-            System.out.println("Points updated.");
         } catch (NumberFormatException e) {
             throw new IncorrectInput("Incorrect points format");
         }
+    }
+
+    public Set<Course> getMostPopularCourses() {
+        return coursesController.getMostPopularCourses();
+    }
+
+    public Set<Course> getLeastPopularCourses() {
+        return coursesController.getLeastPopularCourses();
+    }
+
+    public Set<Course> getHighestActivityCourses() {
+        return coursesController.getHighestActivityCourses();
+    }
+
+    public Set<Course> getLowestActivityCourses() {
+        return coursesController.getLowestActivityCourses();
     }
 }

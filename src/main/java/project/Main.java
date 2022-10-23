@@ -60,6 +60,7 @@ public class Main {
             try {
                 statistics.addStudent(input);
                 count++;
+                System.out.println("The student has been added");
             } catch (IncorrectInput e) {
                 System.out.println(e.getMessage());
             }
@@ -77,6 +78,7 @@ public class Main {
 
             try {
                 statistics.addPointsToStudent(input);
+                System.out.println("Points updated.");
             } catch (IncorrectInput e) {
                 System.out.println(e.getMessage());
             }

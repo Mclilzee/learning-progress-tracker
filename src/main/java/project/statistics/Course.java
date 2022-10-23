@@ -8,7 +8,7 @@ class Course {
     private final int completionScore;
 
     //Map students -> scores
-    private Map<Student, Integer> students;
+    private final Map<Student, Integer> students;
 
     public Course(String name, int completionScore) {
         this.name = name;

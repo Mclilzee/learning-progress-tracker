@@ -50,12 +50,12 @@ class CoursesController {
 
      Set<Course> getHighestActivityCourses() {
         int highestActivityCount = Arrays.stream(courses).mapToInt(Course::getCompletedTasks).max().orElse(0);
-        return Arrays.stream(courses).filter(course -> course.getStudents().size() == highestActivityCount).collect(Collectors.toSet());
+        return Arrays.stream(courses).filter(course -> course.getCompletedTasks() == highestActivityCount).collect(Collectors.toSet());
     }
 
      Set<Course> getLowestActivityCourses() {
         int lowestActivityCount = Arrays.stream(courses).mapToInt(Course::getCompletedTasks).min().orElse(0);
-        return Arrays.stream(courses).filter(course -> course.getStudents().size() == lowestActivityCount).collect(Collectors.toSet());
+        return Arrays.stream(courses).filter(course -> course.getCompletedTasks() == lowestActivityCount).collect(Collectors.toSet());
     }
 
     enum Courses {
