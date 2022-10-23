@@ -95,4 +95,13 @@ class StudentTest {
         String expected = String.format("%d points: Java=12; DSA=13; Databases=14; Spring=15", hash);
         assertEquals(expected, student.toString());
     }
+
+    @Test
+    @DisplayName("Enrolled in the correct courses")
+    void enrolledCourses() {
+        assertEquals(0, student.getEnrolledCourseSet().size());
+        student.addScores(new int[]{1, 0, 0, 1});
+        assertEquals(2, student.getEnrolledCourseSet().size());
+        assertTrue(student.getEnrolledCourseSet().contains("Java"));
+    }
 }
