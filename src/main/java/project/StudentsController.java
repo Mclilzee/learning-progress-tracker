@@ -36,10 +36,17 @@ public class StudentsController {
         return getFilteredCoursesSet(coursesEnrollment, leastPopularCount);
     }
 
-    private Set<Course> getFilteredCoursesSet(Map<Course, Integer> courses, int enrollmentNumber) {
-        Set<Course> set = new LinkedHashSet<>();
+    public Set<Course> getHighestActivityCourses() {
+        Map<Course, Integer> coursesActivity = getCoursesCompletedTasks();
+        int highestActivity = coursesActivity.values().stream().max(Integer::compareTo).orElse(0);
+
+        return getFilteredCoursesSet(coursesActivity, highestActivity);
+    }
+
+    private Set<Course> getFilteredCoursesSet(Map<Course, Integer> courses, int filterNumber) {
+        Set<Course> set = new HashSet<>();
         for (var entrySet : courses.entrySet()) {
-            if (entrySet.getValue() == enrollmentNumber) {
+            if (entrySet.getValue() == filterNumber) {
                 set.add(entrySet.getKey());
             }
         }
@@ -47,8 +54,23 @@ public class StudentsController {
         return set;
     }
 
+    private Map<Course, Integer> getCoursesCompletedTasks() {
+        Map<Course, Integer> courses = new HashMap<>();
+        for (Student student : students.values()) {
+            addEachCourseCompletedTasks(student, courses);
+        }
+
+        return courses;
+    }
+
+    private void addEachCourseCompletedTasks(Student student, Map<Course, Integer> courses) {
+        for (Course course : student.getEnrolledCourseSet()) {
+            courses.put(course, courses.getOrDefault(course, 0) + course.getCompletedTasks());
+        }
+    }
+
     private Map<Course, Integer> getCoursesEnrollments() {
-        Map<Course, Integer> courses = new LinkedHashMap<>();
+        Map<Course, Integer> courses = new HashMap<>();
         for (Student student : students.values()) {
             addEachCourseEnrollment(student, courses);
         }

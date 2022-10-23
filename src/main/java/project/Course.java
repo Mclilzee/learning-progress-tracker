@@ -3,9 +3,10 @@ package project;
 import java.util.Objects;
 
 public class Course {
-    private String name;
+    private final String name;
     private int score;
-    private int completionScore;
+    private final int completionScore;
+    private int completedTasks;
 
     public Course(String name, int completionScore) {
         this.name = name;
@@ -24,11 +25,16 @@ public class Course {
         return completionScore;
     }
 
+    public int getCompletedTasks() {
+        return this.completedTasks;
+    }
+
     public void addScore(int score) {
-        if (score < 0) {
-            score = 0;
+        if (score <= 0) {
+            return;
         }
         this.score += score;
+        this.completedTasks++;
     }
 
     @Override

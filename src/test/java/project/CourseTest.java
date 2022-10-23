@@ -16,6 +16,16 @@ class CourseTest {
     }
 
     @Test
+    @DisplayName("Completed tasks show correctly")
+    void getCompletedTasks() {
+        course.addScore(0);
+        course.addScore(1);
+        course.addScore(-5);
+        course.addScore(50);
+        assertEquals(2, course.getCompletedTasks());
+    }
+
+    @Test
     void getName() {
         assertEquals("Java", course.getName());
     }

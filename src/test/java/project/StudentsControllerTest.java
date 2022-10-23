@@ -117,21 +117,44 @@ class StudentsControllerTest {
         assertEquals(leastPopular, studentController.getLeastPopularCourses());
     }
 
+    @Test
+    @DisplayName("Show correct highest activity set")
+    void highestActivityCourses() {
+        Set<Course> highestActivity = Set.of(Courses.JAVA.getCourse(), Courses.DSA.getCourse());
+        fillStudents();
+
+        assertEquals(highestActivity, studentController.getHighestActivityCourses());
+    }
+
     private void fillStudents() {
-        Student john = new Student("john", "doe", "john@hotmail.com");
         studentController.addStudent("john doe john@hotmail.com");
-        studentController.getStudent(john.hashCode()).addScores(new int[]{5, 0, 0, 10});
-
-        Student khalil = new Student("Khalil", "Markman", "khalil@gmail.com");
         studentController.addStudent("Khalil Markman khalil@gmail.com");
-        studentController.getStudent(khalil.hashCode()).addScores(new int[]{10, 0, 2, 5});
-
-        Student mark = new Student("Mark", "zergberg", "mark@hotmail.com");
         studentController.addStudent("Mark zergberg mark@hotmail.com");
-        studentController.getStudent(mark.hashCode()).addScores(new int[]{6, 6, 0, 6});
-
-        Student gly = new Student("Glycen", "Glylo", "gly@gmail.com");
         studentController.addStudent("Glycen Glylo gly@gmail.com");
-        studentController.getStudent(gly.hashCode()).addScores(new int[]{0, 2, 0, 0});
+
+        Student john = studentController.getStudent(getEmailHash("john@hotmail.com"));
+        john.addScores(new int[]{0, 5, 0, 20});
+        john.addScores(new int[]{0, 50, 0, 0});
+        john.addScores(new int[]{10, 5, 0, 0});
+
+        Student khalil = studentController.getStudent(getEmailHash("khalil@gmail.com"));
+        khalil.addScores(new int[]{5, 0, 6, 0});
+        khalil.addScores(new int[]{8, 0, 4, 0});
+        khalil.addScores(new int[]{7, 0, 5, 8});
+
+        Student mark = studentController.getStudent(getEmailHash("mark@hotmail.com"));
+        mark.addScores(new int[]{5, 5, 0, 10});
+        mark.addScores(new int[]{0, 5, 0, 0});
+        mark.addScores(new int[]{0, 5, 0, 0});
+
+        Student gly = studentController.getStudent(getEmailHash("gly@gmail.com"));
+        gly.addScores(new int[]{0, 0, 0, 7});
+        gly.addScores(new int[]{20, 0, 0, 6});
+        gly.addScores(new int[]{0, 0, 0, 0});
+
+    }
+
+    private int getEmailHash(String email) {
+        return new Student("John", "Doe", email).hashCode();
     }
 }

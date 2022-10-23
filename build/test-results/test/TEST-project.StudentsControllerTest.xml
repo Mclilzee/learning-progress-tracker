@@ -1,30 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="project.StudentsControllerTest" tests="25" skipped="0" failures="0" errors="0" timestamp="2022-10-23T03:05:14" hostname="DESKTOP-DM0E31D" time="0.078">
+<testsuite name="project.StudentsControllerTest" tests="26" skipped="0" failures="0" errors="0" timestamp="2022-10-23T03:40:08" hostname="DESKTOP-DM0E31D" time="0.108">
   <properties/>
-  <testcase name="Student with right amount of credentials and format should return true" classname="project.StudentsControllerTest" time="0.037"/>
+  <testcase name="Show correct highest activity set" classname="project.StudentsControllerTest" time="0.022"/>
+  <testcase name="Student with right amount of credentials and format should return true" classname="project.StudentsControllerTest" time="0.021"/>
   <testcase name="Student with right amount of credentials and format should return true" classname="project.StudentsControllerTest" time="0.001"/>
-  <testcase name="Student with right amount of credentials and format should return true" classname="project.StudentsControllerTest" time="0.0"/>
-  <testcase name="Return correct students id set" classname="project.StudentsControllerTest" time="0.002"/>
+  <testcase name="Student with right amount of credentials and format should return true" classname="project.StudentsControllerTest" time="0.001"/>
+  <testcase name="Return correct students id set" classname="project.StudentsControllerTest" time="0.001"/>
+  <testcase name="Add student with less than 3 credentials should return false" classname="project.StudentsControllerTest" time="0.002"/>
+  <testcase name="Add student with less than 3 credentials should return false" classname="project.StudentsControllerTest" time="0.0"/>
   <testcase name="Add student with less than 3 credentials should return false" classname="project.StudentsControllerTest" time="0.001"/>
-  <testcase name="Add student with less than 3 credentials should return false" classname="project.StudentsControllerTest" time="0.001"/>
-  <testcase name="Add student with less than 3 credentials should return false" classname="project.StudentsControllerTest" time="0.001"/>
+  <testcase name="Student with invalid last name should return false" classname="project.StudentsControllerTest" time="0.001"/>
   <testcase name="Student with invalid last name should return false" classname="project.StudentsControllerTest" time="0.0"/>
   <testcase name="Student with invalid last name should return false" classname="project.StudentsControllerTest" time="0.001"/>
   <testcase name="Student with invalid last name should return false" classname="project.StudentsControllerTest" time="0.001"/>
-  <testcase name="Student with invalid last name should return false" classname="project.StudentsControllerTest" time="0.001"/>
-  <testcase name="Student with invalid first name should return false" classname="project.StudentsControllerTest" time="0.001"/>
-  <testcase name="Student with invalid first name should return false" classname="project.StudentsControllerTest" time="0.001"/>
+  <testcase name="Student with invalid first name should return false" classname="project.StudentsControllerTest" time="0.002"/>
   <testcase name="Student with invalid first name should return false" classname="project.StudentsControllerTest" time="0.0"/>
   <testcase name="Student with invalid first name should return false" classname="project.StudentsControllerTest" time="0.0"/>
+  <testcase name="Student with invalid first name should return false" classname="project.StudentsControllerTest" time="0.001"/>
   <testcase name="Only students with unique email can be added" classname="project.StudentsControllerTest" time="0.002"/>
   <testcase name="Show correct least popular courses" classname="project.StudentsControllerTest" time="0.002"/>
-  <testcase name="Students with different emails can be added" classname="project.StudentsControllerTest" time="0.001"/>
+  <testcase name="Students with different emails can be added" classname="project.StudentsControllerTest" time="0.0"/>
   <testcase name="Student with wrong email format should return false" classname="project.StudentsControllerTest" time="0.001"/>
   <testcase name="Student with wrong email format should return false" classname="project.StudentsControllerTest" time="0.0"/>
   <testcase name="Student with wrong email format should return false" classname="project.StudentsControllerTest" time="0.001"/>
+  <testcase name="Student with wrong email format should return false" classname="project.StudentsControllerTest" time="0.0"/>
   <testcase name="Student with wrong email format should return false" classname="project.StudentsControllerTest" time="0.001"/>
-  <testcase name="Student with wrong email format should return false" classname="project.StudentsControllerTest" time="0.001"/>
-  <testcase name="Show correct most popular courses" classname="project.StudentsControllerTest" time="0.002"/>
+  <testcase name="Show correct most popular courses" classname="project.StudentsControllerTest" time="0.001"/>
   <testcase name="Correct student information being added" classname="project.StudentsControllerTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
