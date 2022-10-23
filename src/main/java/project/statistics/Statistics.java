@@ -69,4 +69,12 @@ public class Statistics {
     public Set<Course> getLowestActivityCourses() {
         return coursesController.getLowestActivityCourses();
     }
+
+    public Set<Course> getEasiestCourses() {
+        return coursesController.getEasiestCourses();
+    }
+
+    public Set<Course> getHardestCourses() {
+        return coursesController.getHardestCourses();
+    }
 }

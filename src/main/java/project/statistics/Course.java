@@ -1,5 +1,7 @@
 package project.statistics;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
 
 class Course {
@@ -43,6 +45,15 @@ class Course {
 
         students.put(student, students.getOrDefault(student, 0) + score);
         completedTasks++;
+    }
+
+    public double getAverageScores() {
+        if (students.isEmpty()) {
+            return 0;
+        }
+        BigDecimal totalScore = new BigDecimal(students.values().stream().reduce((sum, next) -> sum += next).orElse(0));
+        BigDecimal studentCount = BigDecimal.valueOf(students.size());
+        return Double.parseDouble(totalScore.divide(studentCount, 2, RoundingMode.HALF_UP).toPlainString());
     }
 
     @Override

@@ -43,6 +43,12 @@ class CourseTest {
     }
 
     @Test
+    @DisplayName("Completion score show correctly")
+    void getCompletionScore() {
+        assertEquals(300, course.getCompletionScore());
+    }
+
+    @Test
     @DisplayName("Completed tasks show correctly")
     void getCompletedTasks() {
         fillCourseWithStudents();
@@ -70,9 +76,10 @@ class CourseTest {
     }
 
     @Test
-    @DisplayName("Completion score show correctly")
-    void getCompletionScore() {
-        assertEquals(300, course.getCompletionScore());
+    @DisplayName("Show correct average score")
+    void averageScore() {
+        fillCourseWithStudents();
+        assertEquals(7.66, course.getAverageScores(), 0.01);
     }
 
     @Test

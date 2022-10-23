@@ -135,6 +135,17 @@ class StatisticsTest {
         assertEquals(lowestActivity, statistics.getLowestActivityCourses());
     }
 
+    @Test
+    @DisplayName("Return empty set if no students enrolled")
+    void noEnrollment() {
+        assertEquals(Set.of(), statistics.getMostPopularCourses());
+        assertEquals(Set.of(), statistics.getLeastPopularCourses());
+        assertEquals(Set.of(), statistics.getHighestActivityCourses());
+        assertEquals(Set.of(), statistics.getLowestActivityCourses());
+        assertEquals(Set.of(), statistics.getEasiestCourses());
+        assertEquals(Set.of(), statistics.getHardestCourses());
+    }
+
     private void fillStudents() throws IncorrectInput {
         statistics.addStudent("john doe john@hotmail.com");
         statistics.addStudent("Khalil Markman khalil@gmail.com");
