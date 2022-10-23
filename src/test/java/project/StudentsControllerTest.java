@@ -68,11 +68,10 @@ class StudentsControllerTest {
     @DisplayName("Only students with unique email can be added")
     void sameEmailDoesNotOverWrite() {
         studentController.addStudent("John doe john@hotmail.com");
-        Student student = new Student("John", "doe", "john@hotmail.com");
         Exception e = assertThrows(IllegalArgumentException.class, () -> studentController.addStudent("Mark zergberg john@hotmail.com"));
         assertEquals("This email is already taken", e.getMessage());
         assertEquals(1, studentController.getStudentsNumber());
-        assertEquals("John", studentController.getStudent(student.hashCode()).getFirstName());
+        assertEquals("John", studentController.getStudent(getEmailHash("john@hotmail.com")).getFirstName());
     }
 
     @Test
@@ -89,13 +88,11 @@ class StudentsControllerTest {
     @Test
     @DisplayName("Return correct students id set")
     void getStudentsIDSet() {
-        Student first = new Student("John", "Doe", "John@hotmail.com");
-        Student second = new Student("Mark", "Zerg-berg asmar", "mark@gmail.com");
         studentController.addStudent("John Doe John@hotmail.com");
         studentController.addStudent("Mark Zerg-berg asmar mark@gmail.com");
         Set<Integer> set = new LinkedHashSet<>();
-        set.add(first.hashCode());
-        set.add(second.hashCode());
+        set.add(getEmailHash("John@hotmail.com"));
+        set.add(getEmailHash("mark@gmail.com"));
         assertEquals(set, studentController.getStudentsIDSet());
     }
 
@@ -126,6 +123,15 @@ class StudentsControllerTest {
         assertEquals(highestActivity, studentController.getHighestActivityCourses());
     }
 
+    @Test
+    @DisplayName("Show correct lowest activity set")
+    void lowestActivityCourses() {
+        Set<Course> lowestActivity = Set.of(Courses.DATABASES.getCourse());
+        fillStudents();
+
+        assertEquals(lowestActivity, studentController.getLowestActivityCourses());
+    }
+
     private void fillStudents() {
         studentController.addStudent("john doe john@hotmail.com");
         studentController.addStudent("Khalil Markman khalil@gmail.com");
@@ -151,7 +157,6 @@ class StudentsControllerTest {
         gly.addScores(new int[]{0, 0, 0, 7});
         gly.addScores(new int[]{20, 0, 0, 6});
         gly.addScores(new int[]{0, 0, 0, 0});
-
     }
 
     private int getEmailHash(String email) {

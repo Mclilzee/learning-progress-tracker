@@ -43,6 +43,13 @@ public class StudentsController {
         return getFilteredCoursesSet(coursesActivity, highestActivity);
     }
 
+    public Set<Course> getLowestActivityCourses() {
+        Map<Course, Integer> courseActivity = getCoursesCompletedTasks();
+        int lowestActivity = courseActivity.values().stream().min(Integer::compareTo).orElse(0);
+
+        return getFilteredCoursesSet(courseActivity, lowestActivity);
+    }
+
     private Set<Course> getFilteredCoursesSet(Map<Course, Integer> courses, int filterNumber) {
         Set<Course> set = new HashSet<>();
         for (var entrySet : courses.entrySet()) {
