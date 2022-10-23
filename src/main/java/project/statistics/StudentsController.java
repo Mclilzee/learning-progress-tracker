@@ -4,31 +4,31 @@ import project.IncorrectInput;
 
 import java.util.*;
 
- final class StudentsController {
+final class StudentsController {
 
     private final Map<Integer, Student> students;
 
-     StudentsController() {
+    StudentsController() {
         this.students = new LinkedHashMap<>();
     }
 
-     Set<Integer> getStudentsIDSet() {
+    Set<Integer> getStudentsIDSet() {
         return this.students.keySet();
     }
 
-     List<Student> getStudents() {
+    List<Student> getStudents() {
         return new ArrayList<>(students.values());
     }
 
-     Student getStudent(int id) {
+    Student getStudent(int id) {
         return students.get(id);
     }
 
-     void addStudent(String input) throws IllegalArgumentException, IncorrectInput {
+    void addStudent(String input) throws IllegalArgumentException, IncorrectInput {
         Student student = getStudentObject(input);
 
         if (students.containsKey(student.hashCode())) {
-            throw new IncorrectInput("This email is already taken");
+            throw IncorrectInput.emailTaken();
         }
 
         students.put(student.hashCode(), student);
@@ -37,7 +37,7 @@ import java.util.*;
     private Student getStudentObject(String input) throws IncorrectInput {
         String[] inputArray = input.split(" ");
         if (inputArray.length < 3) {
-            throw new IncorrectInput("Incorrect credentials");
+            throw IncorrectInput.incorrectCredentials();
         }
 
         String firstName = inputArray[0];
@@ -49,20 +49,20 @@ import java.util.*;
             return student;
         }
 
-        throw new IncorrectInput("Incorrect credentials");
+        throw IncorrectInput.incorrectCredentials();
     }
 
     private boolean isValidCredentials(Student student) throws IncorrectInput {
         if (!student.getFirstName().matches("([a-zA-Z][\\-']?)+[a-zA-Z]$")) {
-            throw new IncorrectInput("Incorrect first name");
+            throw IncorrectInput.incorrectFirstName();
         }
 
         if (!student.getLastName().matches("([a-zA-Z][\\-' ]?)+[a-zA-Z]$")) {
-            throw new IncorrectInput("Incorrect last name");
+            throw IncorrectInput.incorrectLastName();
         }
 
         if (!student.getEmail().matches("[^@]+@[^@.]+\\.[^@.]+")) {
-            throw new IncorrectInput("Incorrect email");
+            throw IncorrectInput.incorrectEmail();
         }
 
         return true;

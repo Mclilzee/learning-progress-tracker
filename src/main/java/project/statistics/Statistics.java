@@ -4,7 +4,6 @@ import project.IncorrectInput;
 
 import java.util.Arrays;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Statistics {
 
@@ -22,7 +21,7 @@ public class Statistics {
 
     public Student getStudent(String id) throws IncorrectInput {
         if (!id.matches("\\d+") || !studentsController.getStudentsIDSet().contains(Integer.parseInt(id))) {
-            throw new IncorrectInput("No student is found for id=" + id);
+            throw IncorrectInput.incorrectStudentID(id);
         }
 
         return studentsController.getStudent(Integer.parseInt(id));
@@ -44,15 +43,14 @@ public class Statistics {
     public void addPointsToStudent(String arguments) throws IncorrectInput {
         String[] input = arguments.split(" ");
         if (input.length != coursesController.getNumberOfCourses() + 1) {
-            System.out.println("Incorrect points format");
-            return;
+            throw IncorrectInput.incorrectPointsFormat();
         }
 
         Student student = getStudent(input[0]);
         try {
             coursesController.addPointsToStudent(student, Arrays.stream(input).skip(1).mapToInt(Integer::parseInt).toArray());
         } catch (NumberFormatException e) {
-            throw new IncorrectInput("Incorrect points format");
+            throw IncorrectInput.incorrectPointsFormat();
         }
     }
 
