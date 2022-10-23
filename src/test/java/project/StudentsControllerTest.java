@@ -98,4 +98,23 @@ class StudentsControllerTest {
         set.add(second.hashCode());
         assertEquals(set, studentController.getStudentsIDSet());
     }
+
+    @Test
+    @DisplayName("Show correct most popular courses")
+    void mostPopularCourse() {
+        Set<Course> mostPopular = Set.of(Courses.JAVA.getCourse(), Courses.SPRING.getCourse());
+        Student john = new Student("john", "doe", "john@hotmail.com");
+        studentController.addStudent("john doe john@hotmail.com");
+        studentController.getStudent(john.hashCode()).addScores(new int[]{1, 0, 0, 1});
+
+        Student khalil = new Student("Khalil", "Markman", "khalil@gmail.com");
+        studentController.addStudent("Khalil Markman khalil@gmail.com");
+        studentController.getStudent(khalil.hashCode()).addScores(new int[]{1, 1, 1, 1});
+
+        Student mark = new Student("Mark", "zergberg", "mark@hotmail.com");
+        studentController.addStudent("Mark zergberg mark@hotmail.com");
+        studentController.getStudent(mark.hashCode()).addScores(new int[]{1, 0, 0, 1});
+
+        assertEquals(mostPopular, studentController.getMostPopularCourses());
+    }
 }

@@ -1,8 +1,6 @@
 package project;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class StudentsController {
 
@@ -22,6 +20,34 @@ public class StudentsController {
 
     public Student getStudent(int id) {
         return students.get(id);
+    }
+
+    public Set<Course> getMostPopularCourses() {
+        Map<Course, Integer> coursesEnrollment = getMostPopularCourseEnrollment();
+        Set<Course> courses = new LinkedHashSet<>();
+        int mostPopularCourseEnrollmentNumber = coursesEnrollment.values().stream().max(Integer::compareTo).orElse(0);
+        for (var entrySet : coursesEnrollment.entrySet()) {
+            if (entrySet.getValue() == mostPopularCourseEnrollmentNumber) {
+                courses.add(entrySet.getKey());
+            }
+        }
+
+        return courses;
+    }
+
+    private Map<Course, Integer> getMostPopularCourseEnrollment() {
+        Map<Course, Integer> courses = new HashMap<>();
+        for (Student student : students.values()) {
+            addEachCourseEnrollment(student, courses);
+        }
+
+        return courses;
+    }
+
+    private void addEachCourseEnrollment(Student student, Map<Course, Integer> courses) {
+        for (Course course : student.getEnrolledCourseSet()) {
+            courses.put(course, courses.getOrDefault(course, 0) + 1);
+        }
     }
 
     public void addStudent(String input) throws IllegalArgumentException {
