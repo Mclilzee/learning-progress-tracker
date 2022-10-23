@@ -23,20 +23,32 @@ public class StudentsController {
     }
 
     public Set<Course> getMostPopularCourses() {
-        Map<Course, Integer> coursesEnrollment = getMostPopularCourseEnrollment();
-        Set<Course> courses = new LinkedHashSet<>();
-        int mostPopularCourseEnrollmentNumber = coursesEnrollment.values().stream().max(Integer::compareTo).orElse(0);
-        for (var entrySet : coursesEnrollment.entrySet()) {
-            if (entrySet.getValue() == mostPopularCourseEnrollmentNumber) {
-                courses.add(entrySet.getKey());
+        Map<Course, Integer> coursesEnrollment = getCoursesEnrollment();
+        int mostPopularCount = coursesEnrollment.values().stream().max(Integer::compareTo).orElse(0);
+
+        return getFilteredCoursesSet(coursesEnrollment, mostPopularCount);
+    }
+
+    public Set<Course> getLeastPopularCourses() {
+        Map<Course, Integer> coursesEnrollment = getCoursesEnrollment();
+        int leastPopularCount = coursesEnrollment.values().stream().min(Integer::compareTo).orElse(0);
+
+        return getFilteredCoursesSet(coursesEnrollment, leastPopularCount);
+    }
+
+    private Set<Course> getFilteredCoursesSet(Map<Course, Integer> courses, int enrollmentNumber) {
+        Set<Course> set = new LinkedHashSet<>();
+        for (var entrySet : courses.entrySet()) {
+            if (entrySet.getValue() == enrollmentNumber) {
+                set.add(entrySet.getKey());
             }
         }
 
-        return courses;
+        return set;
     }
 
-    private Map<Course, Integer> getMostPopularCourseEnrollment() {
-        Map<Course, Integer> courses = new HashMap<>();
+    private Map<Course, Integer> getCoursesEnrollment() {
+        Map<Course, Integer> courses = new LinkedHashMap<>();
         for (Student student : students.values()) {
             addEachCourseEnrollment(student, courses);
         }

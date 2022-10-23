@@ -103,18 +103,31 @@ class StudentsControllerTest {
     @DisplayName("Show correct most popular courses")
     void mostPopularCourse() {
         Set<Course> mostPopular = Set.of(Courses.JAVA.getCourse(), Courses.SPRING.getCourse());
+        fillStudents();
+
+        assertEquals(mostPopular, studentController.getMostPopularCourses());
+    }
+
+    @Test
+    @DisplayName("Show correct least popular courses")
+    void leastPopularCourses() {
+        Set<Course> leastPopular = Set.of(Courses.DATABASES.getCourse());
+        fillStudents();
+
+        assertEquals(leastPopular, studentController.getLeastPopularCourses());
+    }
+
+    private void fillStudents() {
         Student john = new Student("john", "doe", "john@hotmail.com");
         studentController.addStudent("john doe john@hotmail.com");
         studentController.getStudent(john.hashCode()).addScores(new int[]{1, 0, 0, 1});
 
         Student khalil = new Student("Khalil", "Markman", "khalil@gmail.com");
         studentController.addStudent("Khalil Markman khalil@gmail.com");
-        studentController.getStudent(khalil.hashCode()).addScores(new int[]{1, 1, 1, 1});
+        studentController.getStudent(khalil.hashCode()).addScores(new int[]{1, 0, 1, 1});
 
         Student mark = new Student("Mark", "zergberg", "mark@hotmail.com");
         studentController.addStudent("Mark zergberg mark@hotmail.com");
         studentController.getStudent(mark.hashCode()).addScores(new int[]{1, 0, 0, 1});
-
-        assertEquals(mostPopular, studentController.getMostPopularCourses());
     }
 }
