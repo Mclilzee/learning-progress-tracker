@@ -9,6 +9,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import project.CoursesController.Courses;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class StudentsControllerTest {

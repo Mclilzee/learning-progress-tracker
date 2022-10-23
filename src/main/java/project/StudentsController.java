@@ -2,7 +2,7 @@ package project;
 
 import java.util.*;
 
-public class StudentsController {
+public final class StudentsController {
 
     private final Map<Integer, Student> students;
 
@@ -20,75 +20,6 @@ public class StudentsController {
 
     public Student getStudent(int id) {
         return students.get(id);
-    }
-
-    public Set<Course> getMostPopularCourses() {
-        Map<Course, Integer> coursesEnrollment = getCoursesEnrollments();
-        int mostPopularCount = coursesEnrollment.values().stream().max(Integer::compareTo).orElse(0);
-
-        return getFilteredCoursesSet(coursesEnrollment, mostPopularCount);
-    }
-
-    public Set<Course> getLeastPopularCourses() {
-        Map<Course, Integer> coursesEnrollment = getCoursesEnrollments();
-        int leastPopularCount = coursesEnrollment.values().stream().min(Integer::compareTo).orElse(0);
-
-        return getFilteredCoursesSet(coursesEnrollment, leastPopularCount);
-    }
-
-    public Set<Course> getHighestActivityCourses() {
-        Map<Course, Integer> coursesActivity = getCoursesCompletedTasks();
-        int highestActivity = coursesActivity.values().stream().max(Integer::compareTo).orElse(0);
-
-        return getFilteredCoursesSet(coursesActivity, highestActivity);
-    }
-
-    public Set<Course> getLowestActivityCourses() {
-        Map<Course, Integer> courseActivity = getCoursesCompletedTasks();
-        int lowestActivity = courseActivity.values().stream().min(Integer::compareTo).orElse(0);
-
-        return getFilteredCoursesSet(courseActivity, lowestActivity);
-    }
-
-    private Set<Course> getFilteredCoursesSet(Map<Course, Integer> courses, int filterNumber) {
-        Set<Course> set = new HashSet<>();
-        for (var entrySet : courses.entrySet()) {
-            if (entrySet.getValue() == filterNumber) {
-                set.add(entrySet.getKey());
-            }
-        }
-
-        return set;
-    }
-
-    private Map<Course, Integer> getCoursesCompletedTasks() {
-        Map<Course, Integer> courses = new HashMap<>();
-        for (Student student : students.values()) {
-            addEachCourseCompletedTasks(student, courses);
-        }
-
-        return courses;
-    }
-
-    private void addEachCourseCompletedTasks(Student student, Map<Course, Integer> courses) {
-        for (Course course : student.getEnrolledCourseSet()) {
-            courses.put(course, courses.getOrDefault(course, 0) + course.getCompletedTasks());
-        }
-    }
-
-    private Map<Course, Integer> getCoursesEnrollments() {
-        Map<Course, Integer> courses = new HashMap<>();
-        for (Student student : students.values()) {
-            addEachCourseEnrollment(student, courses);
-        }
-
-        return courses;
-    }
-
-    private void addEachCourseEnrollment(Student student, Map<Course, Integer> courses) {
-        for (Course course : student.getEnrolledCourseSet()) {
-            courses.put(course, courses.getOrDefault(course, 0) + 1);
-        }
     }
 
     public void addStudent(String input) throws IllegalArgumentException {

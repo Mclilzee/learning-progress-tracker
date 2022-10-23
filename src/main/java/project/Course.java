@@ -1,40 +1,40 @@
 package project;
 
-import java.util.Objects;
+import java.util.*;
 
 public class Course {
     private final String name;
-    private int score;
-    private final int completionScore;
     private int completedTasks;
+    private final int completionScore;
+
+    //Map students -> scores
+    private Map<Student, Integer> students;
 
     public Course(String name, int completionScore) {
         this.name = name;
         this.completionScore = completionScore;
+        this.students = new HashMap<>();
     }
 
     public String getName() {
         return name;
     }
 
-    public int getScore() {
-        return score;
-    }
-
     public int getCompletionScore() {
         return completionScore;
     }
 
-    public int getCompletedTasks() {
-        return this.completedTasks;
+    public Set<Student> getStudents() {
+        return this.students.keySet();
     }
 
-    public void addScore(int score) {
-        if (score <= 0) {
-            return;
-        }
-        this.score += score;
-        this.completedTasks++;
+    public int getStudentScore(Student student) {
+        return students.getOrDefault(student, 0);
+    }
+
+    public void addScore(Student student, int score) {
+        students.put(student, students.getOrDefault(student, 0) + score);
+        completedTasks++;
     }
 
     @Override
