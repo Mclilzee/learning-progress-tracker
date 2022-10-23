@@ -39,4 +39,31 @@ class CourseTest {
     void getCompletionScore() {
         assertEquals(300, course.getCompletionScore());
     }
+
+    @Test
+    @DisplayName("Courses are equals if name is the same")
+    void coursesAreEqual() {
+        Course otherCourse = new Course("Java", 10000);
+        assertEquals(otherCourse, course);
+    }
+
+    @Test
+    @DisplayName("Courses are not equals if name is not the same")
+    void coursesAreNotEqual() {
+        Course otherCourse = new Course("DSA", 300);
+        assertNotEquals(otherCourse, course);
+    }
+
+    @Test
+    @DisplayName("Courses are not equal if other course is null")
+    void coursesAreNotEqualIfNull() {
+        assertNotEquals(course, null);
+    }
+
+    @Test
+    @DisplayName("Courses has same hashcode")
+    void coursesHashAreEqual() {
+        Course otherCourse = new Course("Java", 2000);
+        assertEquals(course.hashCode(), otherCourse.hashCode());
+    }
 }
