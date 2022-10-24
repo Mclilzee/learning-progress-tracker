@@ -56,7 +56,7 @@ class Course {
         return Double.parseDouble(totalScore.divide(studentCount, 2, RoundingMode.HALF_UP).toPlainString());
     }
 
-    public String[] getStudentsStatistics() {
+    public String[] getCourseStatistics() {
         String[] statistics = new String[students.size()];
         int i = 0;
         for (Student student : students.keySet()) {

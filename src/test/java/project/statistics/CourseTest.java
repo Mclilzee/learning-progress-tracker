@@ -3,10 +3,7 @@ package project.statistics;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import project.statistics.Course;
-import project.statistics.Student;
 
-import java.util.Objects;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -89,7 +86,7 @@ class CourseTest {
         String[] statistics = new String[]{String.format("%d\t\t%d\t\t%.1f%%\n", john.hashCode(), 10, 3.300),
                 String.format("%d\t\t%d\t\t%.1f%%\n", mark.hashCode(), 5, 1.700),
                 String.format("%d\t\t%d\t\t%.1f%%\n", gly.hashCode(), 8, 2.700)};
-        assertArrayEquals(statistics, course.getStudentsStatistics());
+        assertArrayEquals(statistics, course.getCourseStatistics());
     }
 
     @Test

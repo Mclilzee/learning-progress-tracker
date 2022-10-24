@@ -1,5 +1,7 @@
 package project.statistics;
 
+import project.IncorrectInput;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -36,6 +38,16 @@ class CoursesController {
         for (int i = 0; i < courses.length; i++) {
             courses[i].addScore(student, scores[i]);
         }
+    }
+
+    String[] getCourseStatistics(String courseName) throws IncorrectInput {
+        for (Course course : courses) {
+            if (courseName.equalsIgnoreCase(course.getName())) {
+                return course.getCourseStatistics();
+            }
+        }
+
+        throw IncorrectInput.incorrectCourseName(courseName);
     }
 
     List<Course> getMostPopularCourses() {

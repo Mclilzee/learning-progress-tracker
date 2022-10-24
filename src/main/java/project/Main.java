@@ -124,7 +124,17 @@ public class Main {
             if ("back".equalsIgnoreCase(input)) {
                 break;
             }
+
+            try {
+                printCourseStatistics(statistics.getCourseStatistics(input));
+            } catch (IncorrectInput e) {
+                System.out.println(e.getMessage());
+            }
         }
+    }
+
+    private static void printCourseStatistics(String[] statistics) {
+
     }
 
     private static void printOverAllStatistics() {

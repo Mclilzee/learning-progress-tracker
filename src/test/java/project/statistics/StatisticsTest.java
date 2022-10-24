@@ -33,21 +33,21 @@ class StatisticsTest {
     @ValueSource(strings = {"Joen Doe", "John", ""})
     void addStudentWithLessCredentials(String credentials) {
         Exception e = assertThrows(IncorrectInput.class, () -> statistics.addStudent(credentials));
-        assertEquals("Incorrect credentials", e.getMessage());
+        assertEquals(IncorrectInput.incorrectCredentials().getMessage(), e.getMessage());
     }
 
     @ParameterizedTest(name = "Student with invalid first name should return false")
     @ValueSource(strings = {"J Doe doe@hotmail.com", "J23en.2as Doe john@gmail.de", "'John Doe john@hotmail.com", "John- Doe john@hotmail.com"})
     void addStudentWithInvalidFirstName(String credentials) {
         Exception e = assertThrows(IncorrectInput.class, () -> statistics.addStudent(credentials));
-        assertEquals("Incorrect first name", e.getMessage());
+        assertEquals(IncorrectInput.incorrectFirstName().getMessage(), e.getMessage());
     }
 
     @ParameterizedTest(name = "Student with invalid last name should return false")
     @ValueSource(strings = {"Joe D john@hotmail.com", "Joe D0domb21 das john@hotmail.com", "Joe -Doeh john@hotmail.com", "Joe Doeh de- john@hotmail.com"})
     void AddStudentWithInvalidLastName(String credentials) {
         Exception e = assertThrows(IncorrectInput.class, () -> statistics.addStudent(credentials));
-        assertEquals("Incorrect last name", e.getMessage());
+        assertEquals(IncorrectInput.incorrectLastName().getMessage(), e.getMessage());
     }
 
     @ParameterizedTest(name = "Student with wrong email format should return false")
@@ -55,7 +55,7 @@ class StatisticsTest {
             "John Doe Mark johen@hotmail.com.dombos"})
     void addStudentWithIncorrectEmailFormat(String credentials) {
         Exception e = assertThrows(IncorrectInput.class, () -> statistics.addStudent(credentials));
-        assertEquals("Incorrect email", e.getMessage());
+        assertEquals(IncorrectInput.incorrectEmail().getMessage(), e.getMessage());
     }
 
     @Test
@@ -72,7 +72,7 @@ class StatisticsTest {
     void sameEmailDoesNotOverWrite() throws IncorrectInput {
         statistics.addStudent("John doe john@hotmail.com");
         Exception e = assertThrows(IncorrectInput.class, () -> statistics.addStudent("Mark zergberg john@hotmail.com"));
-        assertEquals("This email is already taken", e.getMessage());
+        assertEquals(IncorrectInput.emailTaken().getMessage(), e.getMessage());
         assertEquals(1, statistics.getTotalStudents());
         assertEquals("John", statistics.getStudent(getEmailHashString("john@hotmail.com")).getFirstName());
     }
@@ -162,6 +162,27 @@ class StatisticsTest {
         assertEquals("n/a", statistics.getLowestActivityCourses());
         assertEquals("n/a", statistics.getEasiestCourses());
         assertEquals("n/a", statistics.getHardestCourses());
+    }
+
+    @Test
+    @DisplayName("Throw error if no course found for the name")
+    void noCourseFound() {
+        Exception e = assertThrows(IncorrectInput.class, () -> statistics.getCourseStatistics("doblos"));
+        assertEquals(IncorrectInput.incorrectCourseName("doblos").getMessage(), e.getMessage());
+    }
+
+    @Test
+    @DisplayName("Throw error if no students found in course")
+    void noStudentsFound() {
+        Exception e = assertThrows(IncorrectInput.class, () -> statistics.getCourseStatistics("java"));
+        assertEquals(IncorrectInput.noStudentsEnrolledInCourse("java").getMessage(), e.getMessage());
+    }
+
+    @Test
+    @DisplayName("Does not throw error if students were found and course name is correct")
+    void correctClassNameAndStudentsEnrolled() throws IncorrectInput {
+        fillStudents();
+        assertDoesNotThrow(() -> statistics.getCourseStatistics("java"));
     }
 
     private void fillStudents() throws IncorrectInput {

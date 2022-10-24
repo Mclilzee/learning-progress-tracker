@@ -104,4 +104,13 @@ public class Statistics {
         }
         return courses.stream().map(Course::getName).collect(Collectors.joining(", "));
     }
+
+    public String[] getCourseStatistics(String input) throws IncorrectInput {
+        String[] statistics = coursesController.getCourseStatistics(input);
+        if (statistics.length <= 0) {
+            throw IncorrectInput.noStudentsEnrolledInCourse(input);
+        }
+
+        return statistics;
+    }
 }
