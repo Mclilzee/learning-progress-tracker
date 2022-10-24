@@ -106,11 +106,6 @@ public class Statistics {
     }
 
     public String[] getCourseStatistics(String input) throws IncorrectInput {
-        String[] statistics = coursesController.getCourseStatistics(input);
-        if (statistics.length < 3) {
-            throw IncorrectInput.noStudentsEnrolledInCourse(input);
-        }
-
-        return statistics;
+        return coursesController.getCourseStatistics(input);
     }
 }

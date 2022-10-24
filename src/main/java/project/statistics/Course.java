@@ -1,8 +1,11 @@
 package project.statistics;
 
+import project.IncorrectInput;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.*;
+import java.util.stream.Collectors;
 
 class Course {
     private final String name;
@@ -56,19 +59,18 @@ class Course {
         return Double.parseDouble(totalScore.divide(studentCount, 2, RoundingMode.HALF_UP).toPlainString());
     }
 
-    public String[] getCourseStatistics() {
-        String[] statistics = new String[students.size() + 2];
-        statistics[0] = this.name;
-        statistics[1] = "id\t\tpoints\t\tcompleted";
-
-        int i = 2;
-        for (Student student : students.keySet()) {
-            double completion = getStudentCompletionScore(student);
-            statistics[i] = String.format("%d\t\t%d\t\t%.1f%%", student.hashCode(), students.get(student), completion);
-            i++;
+    public List<StudentStatistics> getCourseStatistics() throws IncorrectInput {
+        if (students.isEmpty()) {
+            throw IncorrectInput.noStudentsEnrolledInCourse(this.name);
         }
 
-        return statistics;
+        List<StudentStatistics> statistics = new ArrayList<>();
+        for (Student student : students.keySet()) {
+            double completion = getStudentCompletionScore(student);
+            statistics.add(new StudentStatistics(student.hashCode(), students.get(student), completion));
+        }
+
+        return statistics.stream().sorted().collect(Collectors.toList());
     }
 
     private double getStudentCompletionScore(Student student) {

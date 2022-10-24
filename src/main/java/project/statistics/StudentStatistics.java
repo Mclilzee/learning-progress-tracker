@@ -1,5 +1,7 @@
 package project.statistics;
 
+import java.util.Objects;
+
 class StudentStatistics implements Comparable<StudentStatistics> {
     private final int id;
     private final int points;
@@ -18,7 +20,20 @@ class StudentStatistics implements Comparable<StudentStatistics> {
 
     @Override
     public int compareTo(StudentStatistics other) {
-        int compareValue = Integer.compare(this.points, other.points);
-        return compareValue == 0 ? Integer.compare(other.id, this.id) : compareValue;
+        int compareValue = Integer.compare(other.points, this.points);
+        return compareValue == 0 ? Integer.compare(this.id, other.id) : compareValue;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StudentStatistics that = (StudentStatistics) o;
+        return id == that.id && points == that.points;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, points);
     }
 }

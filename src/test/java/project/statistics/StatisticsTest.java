@@ -175,7 +175,7 @@ class StatisticsTest {
     @DisplayName("Throw error if no students found in course")
     void noStudentsFound() {
         Exception e = assertThrows(IncorrectInput.class, () -> statistics.getCourseStatistics("java"));
-        assertEquals(IncorrectInput.noStudentsEnrolledInCourse("java").getMessage(), e.getMessage());
+        assertEquals(IncorrectInput.noStudentsEnrolledInCourse("Java").getMessage(), e.getMessage());
     }
 
     @Test

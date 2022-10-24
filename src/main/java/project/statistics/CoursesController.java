@@ -43,11 +43,25 @@ class CoursesController {
     String[] getCourseStatistics(String courseName) throws IncorrectInput {
         for (Course course : courses) {
             if (courseName.equalsIgnoreCase(course.getName())) {
-                return course.getCourseStatistics();
+                return formatCourseStatistics(course);
             }
         }
 
         throw IncorrectInput.incorrectCourseName(courseName);
+    }
+
+    String[] formatCourseStatistics(Course course) throws IncorrectInput {
+        List<StudentStatistics> statistics = course.getCourseStatistics();
+
+        String[] formattedStatistics = new String[statistics.size() + 2];
+        formattedStatistics[0] = course.getName();
+        formattedStatistics[1] = "id\t\tpoints\t\tcompleted";
+
+        for (int i = 0; i < statistics.size(); i++) {
+            formattedStatistics[i + 2] = statistics.get(i).toString();
+        }
+
+        return formattedStatistics;
     }
 
     List<Course> getMostPopularCourses() {

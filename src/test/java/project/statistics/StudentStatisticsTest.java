@@ -30,9 +30,9 @@ class StudentStatisticsTest {
 
     @Test
     void compareTo() {
-        assertTrue(firstStudent.compareTo(secondStudent) < 0);
-        assertTrue(firstStudent.compareTo(thirdStudent) > 0);
-        assertTrue(secondStudent.compareTo(thirdStudent) > 0);
+        assertTrue(firstStudent.compareTo(secondStudent) > 0);
+        assertTrue(firstStudent.compareTo(thirdStudent) < 0);
+        assertTrue(secondStudent.compareTo(thirdStudent) < 0);
         assertEquals(0, thirdStudent.compareTo(fourthStudent));
     }
 }

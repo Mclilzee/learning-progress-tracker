@@ -3,7 +3,10 @@ package project.statistics;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import project.IncorrectInput;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -81,14 +84,15 @@ class CourseTest {
 
     @Test
     @DisplayName("return correct Student statistic data")
-    void studentStatistics() {
+    void studentStatistics() throws IncorrectInput {
         fillCourseWithStudents();
-        String[] statistics = new String[]{course.getName(),
-                "id\t\tpoints\t\tcompleted",
-                String.format("%d\t\t%d\t\t%.1f%%", john.hashCode(), 10, 3.300),
-                String.format("%d\t\t%d\t\t%.1f%%", mark.hashCode(), 5, 1.700),
-                String.format("%d\t\t%d\t\t%.1f%%", gly.hashCode(), 8, 2.700)};
-        assertArrayEquals(statistics, course.getCourseStatistics());
+
+        List<StudentStatistics> expected = new ArrayList<>();
+        expected.add(new StudentStatistics(john.hashCode(), 10, 3.300));
+        expected.add(new StudentStatistics(gly.hashCode(), 8, 2.700));
+        expected.add(new StudentStatistics(mark.hashCode(), 5, 1.700));
+
+        assertEquals(expected, course.getCourseStatistics());
     }
 
     @Test
