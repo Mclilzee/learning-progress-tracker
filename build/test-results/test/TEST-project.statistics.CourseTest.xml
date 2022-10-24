@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="project.statistics.CourseTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2022-10-24T05:44:39" hostname="DESKTOP-DM0E31D" time="0.037">
+  <properties/>
+  <testcase name="Courses are not equals if name is not the same" classname="project.statistics.CourseTest" time="0.02"/>
+  <testcase name="Courses are equals if name is the same" classname="project.statistics.CourseTest" time="0.003"/>
+  <testcase name="Courses has same hashcode" classname="project.statistics.CourseTest" time="0.001"/>
+  <testcase name="getName()" classname="project.statistics.CourseTest" time="0.001"/>
+  <testcase name="Add correct number to student" classname="project.statistics.CourseTest" time="0.001"/>
+  <testcase name="return correct Student statistic data" classname="project.statistics.CourseTest" time="0.006"/>
+  <testcase name="Completion score show correctly" classname="project.statistics.CourseTest" time="0.0"/>
+  <testcase name="Courses are not equal if other course is null" classname="project.statistics.CourseTest" time="0.0"/>
+  <testcase name="Show correct average score" classname="project.statistics.CourseTest" time="0.001"/>
+  <testcase name="Completed tasks show correctly" classname="project.statistics.CourseTest" time="0.0"/>
+  <testcase name="Show correct enrolled students" classname="project.statistics.CourseTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

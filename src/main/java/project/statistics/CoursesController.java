@@ -89,7 +89,7 @@ class CoursesController {
     enum Courses {
         JAVA("Java", 600),
         DSA("DSA", 400),
-        DATABASES("Databases", 550),
+        DATABASES("Databases", 480),
         SPRING("Spring", 550);
 
         private final int completionScore;

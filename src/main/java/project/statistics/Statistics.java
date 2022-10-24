@@ -43,7 +43,7 @@ public class Statistics {
     }
 
     public void addPointsToStudent(String arguments) throws IncorrectInput {
-        String[] input = arguments.split(" ");
+        String[] input = arguments.split("\\s");
         if (input.length != coursesController.getNumberOfCourses() + 1) {
             throw IncorrectInput.incorrectPointsFormat();
         }
@@ -107,7 +107,7 @@ public class Statistics {
 
     public String[] getCourseStatistics(String input) throws IncorrectInput {
         String[] statistics = coursesController.getCourseStatistics(input);
-        if (statistics.length <= 0) {
+        if (statistics.length < 3) {
             throw IncorrectInput.noStudentsEnrolledInCourse(input);
         }
 

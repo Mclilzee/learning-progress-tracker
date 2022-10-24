@@ -83,9 +83,11 @@ class CourseTest {
     @DisplayName("return correct Student statistic data")
     void studentStatistics() {
         fillCourseWithStudents();
-        String[] statistics = new String[]{String.format("%d\t\t%d\t\t%.1f%%\n", john.hashCode(), 10, 3.300),
-                String.format("%d\t\t%d\t\t%.1f%%\n", mark.hashCode(), 5, 1.700),
-                String.format("%d\t\t%d\t\t%.1f%%\n", gly.hashCode(), 8, 2.700)};
+        String[] statistics = new String[]{course.getName(),
+                "id\t\tpoints\t\tcompleted",
+                String.format("%d\t\t%d\t\t%.1f%%", john.hashCode(), 10, 3.300),
+                String.format("%d\t\t%d\t\t%.1f%%", mark.hashCode(), 5, 1.700),
+                String.format("%d\t\t%d\t\t%.1f%%", gly.hashCode(), 8, 2.700)};
         assertArrayEquals(statistics, course.getCourseStatistics());
     }
 

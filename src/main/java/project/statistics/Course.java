@@ -57,11 +57,14 @@ class Course {
     }
 
     public String[] getCourseStatistics() {
-        String[] statistics = new String[students.size()];
-        int i = 0;
+        String[] statistics = new String[students.size() + 2];
+        statistics[0] = this.name;
+        statistics[1] = "id\t\tpoints\t\tcompleted";
+
+        int i = 2;
         for (Student student : students.keySet()) {
             double completion = getStudentCompletionScore(student);
-            statistics[i] = String.format("%d\t\t%d\t\t%.1f%%\n", student.hashCode(), students.get(student), completion);
+            statistics[i] = String.format("%d\t\t%d\t\t%.1f%%", student.hashCode(), students.get(student), completion);
             i++;
         }
 

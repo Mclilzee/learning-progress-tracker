@@ -2,6 +2,7 @@ package project;
 
 import project.statistics.Statistics;
 
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -18,7 +19,7 @@ public class Main {
 
         boolean quit = false;
         while (!quit) {
-            switch (scanner.nextLine().toLowerCase().trim()) {
+            switch (scanner.nextLine().toLowerCase().strip()) {
                 case "":
                     System.out.println("No input");
                     break;
@@ -126,15 +127,11 @@ public class Main {
             }
 
             try {
-                printCourseStatistics(statistics.getCourseStatistics(input));
+                Arrays.stream(statistics.getCourseStatistics(input)).forEach(System.out::println);
             } catch (IncorrectInput e) {
                 System.out.println(e.getMessage());
             }
         }
-    }
-
-    private static void printCourseStatistics(String[] statistics) {
-
     }
 
     private static void printOverAllStatistics() {
