@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 import project.statistics.Course;
 import project.statistics.Student;
 
+import java.util.Objects;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class CourseTest {
 
@@ -80,6 +80,16 @@ class CourseTest {
     void averageScore() {
         fillCourseWithStudents();
         assertEquals(7.66, course.getAverageScores(), 0.01);
+    }
+
+    @Test
+    @DisplayName("return correct Student statistic data")
+    void studentStatistics() {
+        fillCourseWithStudents();
+        String[] statistics = new String[]{String.format("%d\t\t%d\t\t%.1f%%\n", john.hashCode(), 10, 3.300),
+                String.format("%d\t\t%d\t\t%.1f%%\n", mark.hashCode(), 5, 1.700),
+                String.format("%d\t\t%d\t\t%.1f%%\n", gly.hashCode(), 8, 2.700)};
+        assertArrayEquals(statistics, course.getStudentsStatistics());
     }
 
     @Test

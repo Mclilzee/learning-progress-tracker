@@ -56,6 +56,23 @@ class Course {
         return Double.parseDouble(totalScore.divide(studentCount, 2, RoundingMode.HALF_UP).toPlainString());
     }
 
+    public String[] getStudentsStatistics() {
+        String[] statistics = new String[students.size()];
+        int i = 0;
+        for (Student student : students.keySet()) {
+            double completion = getStudentCompletionScore(student);
+            statistics[i] = String.format("%d\t\t%d\t\t%.1f%%\n", student.hashCode(), students.get(student), completion);
+            i++;
+        }
+
+        return statistics;
+    }
+
+    private double getStudentCompletionScore(Student student) {
+        double completion = (double) students.get(student) / completionScore * 100;
+        return Double.parseDouble(BigDecimal.valueOf(completion).setScale(1, RoundingMode.HALF_UP).toPlainString());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
