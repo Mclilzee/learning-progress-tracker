@@ -45,6 +45,9 @@ public class Main {
                 case "statistics":
                     printStatistics();
                     break;
+                case "notify":
+                    statistics.notifyStudents();
+                    break;
                 default:
                     System.out.println("unknown command!");
                     break;

@@ -5,9 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import project.IncorrectInput;
 
-import java.util.ArrayList;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -113,16 +111,18 @@ class CourseTest {
     @DisplayName("Return empty set of students if course has no students that completed course ")
     void didNotCompleteCourse() throws IncorrectInput {
         fillCourseWithStudents();
-        assertEquals(Set.of(), course.getCourseCompletedStudents());
+        assertEquals(Set.of(), course.getStudentsToNotify());
     }
 
     @Test
-    @DisplayName("Return correct students that completed course")
-    void completedCourse() throws IncorrectInput {
+    @DisplayName("Return student to notify and only once ")
+    void completedCourseNotification() throws IncorrectInput {
         fillCourseWithStudents();
         course.addScore(john, 300);
         course.addScore(gly, 500);
-        assertEquals(Set.of(john, gly), course.getCourseCompletedStudents());
+        assertEquals(Set.of(john, gly), course.getStudentsToNotify());
+        assertEquals(Set.of(), course.getStudentsToNotify());
+
     }
 
     @Test

@@ -76,7 +76,7 @@ class CoursesController {
     }
 
     private void fillMapFromCourseCompletedStudents(Course course, Map<Student, Set<Course>> map) {
-        for (Student student : course.getCourseCompletedStudents()) {
+        for (Student student : course.getStudentsToNotify()) {
             map.putIfAbsent(student, new LinkedHashSet<>());
             map.get(student).add(course);
         }

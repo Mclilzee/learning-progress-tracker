@@ -14,11 +14,13 @@ class Course {
 
     //Map students -> scores
     private final Map<Student, Integer> students;
+    private final Set<Student> studentsToNotify;
 
     Course(String name, int completionScore) {
         this.name = name;
         this.completionScore = completionScore;
         this.students = new LinkedHashMap<>();
+        this.studentsToNotify = new LinkedHashSet<>();
     }
 
     String getName() {
@@ -52,6 +54,10 @@ class Course {
 
         students.put(student, students.getOrDefault(student, 0) + score);
         completedTasks++;
+
+        if (students.get(student) >= this.completionScore) {
+            this.studentsToNotify.add(student);
+        }
     }
 
     double getAverageScores() {
@@ -73,9 +79,10 @@ class Course {
         return statistics;
     }
 
-    Set<Student> getCourseCompletedStudents() {
-        return students.keySet().stream().filter(key -> students.get(key) >= this.completionScore)
-                .collect(Collectors.toCollection(LinkedHashSet::new));
+    Set<Student> getStudentsToNotify() {
+        Set<Student> students = Set.copyOf(studentsToNotify);
+        studentsToNotify.clear();
+        return students;
     }
 
     private double getStudentCompletionScore(Student student) {

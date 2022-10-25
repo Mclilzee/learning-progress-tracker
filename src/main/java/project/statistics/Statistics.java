@@ -115,13 +115,15 @@ public class Statistics {
         for (Student student : students.keySet()) {
             notifyStudentAboutCourseCompletion(student, students.get(student));
         }
+
+        System.out.printf("Total %d student%s have been notified", students.size(), students.size() == 1 ? "" : "s");
     }
 
     private void notifyStudentAboutCourseCompletion(Student student, Set<Course> courses) {
         for (Course course : courses) {
             System.out.println("To: " + student.getEmail());
             System.out.println("Re: Your Learning Progress");
-            System.out.printf("Hello, %");
+            System.out.printf("Hello, %s! You have accomplished our %s course!%n", student, course.getName());
         }
     }
 }
