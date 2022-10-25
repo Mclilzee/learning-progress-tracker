@@ -15,33 +15,33 @@ class Course {
     //Map students -> scores
     private final Map<Student, Integer> students;
 
-    public Course(String name, int completionScore) {
+    Course(String name, int completionScore) {
         this.name = name;
         this.completionScore = completionScore;
         this.students = new HashMap<>();
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
-    public int getCompletionScore() {
+    int getCompletionScore() {
         return completionScore;
     }
 
-    public int getCompletedTasks() {
+    int getCompletedTasks() {
         return this.completedTasks;
     }
 
-    public Set<Student> getStudents() {
+    Set<Student> getStudents() {
         return this.students.keySet();
     }
 
-    public int getStudentScore(Student student) {
+    int getStudentScore(Student student) {
         return students.getOrDefault(student, 0);
     }
 
-    public void addScore(Student student, int score) throws IncorrectInput {
+    void addScore(Student student, int score) throws IncorrectInput {
         if (score < 0 || student == null) {
             throw IncorrectInput.incorrectPointsFormat();
         }
@@ -54,7 +54,7 @@ class Course {
         completedTasks++;
     }
 
-    public double getAverageScores() {
+    double getAverageScores() {
         if (students.isEmpty()) {
             return 0;
         }
@@ -63,7 +63,7 @@ class Course {
         return Double.parseDouble(totalScore.divide(studentCount, 2, RoundingMode.HALF_UP).toPlainString());
     }
 
-    public Set<StudentStatistics> getCourseStatistics() {
+    Set<StudentStatistics> getCourseStatistics() {
         Set<StudentStatistics> statistics = new TreeSet<>();
         for (Student student : students.keySet()) {
             double completion = getStudentCompletionScore(student);
@@ -71,6 +71,11 @@ class Course {
         }
 
         return statistics;
+    }
+
+    Set<Student> getCourseCompletedStudents() {
+        return students.keySet().stream().filter(key -> students.get(key) >= this.completionScore)
+                .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
     private double getStudentCompletionScore(Student student) {

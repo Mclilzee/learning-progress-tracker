@@ -110,6 +110,22 @@ class CourseTest {
     }
 
     @Test
+    @DisplayName("Return empty set of students if course has no students that completed course ")
+    void didNotCompleteCourse() throws IncorrectInput {
+        fillCourseWithStudents();
+        assertEquals(Set.of(), course.getCourseCompletedStudents());
+    }
+
+    @Test
+    @DisplayName("Return correct students that completed course")
+    void completedCourse() throws IncorrectInput {
+        fillCourseWithStudents();
+        course.addScore(john, 300);
+        course.addScore(gly, 500);
+        assertEquals(Set.of(john, gly), course.getCourseCompletedStudents());
+    }
+
+    @Test
     @DisplayName("Courses are equals if name is the same")
     void coursesAreEqual() {
         Course otherCourse = new Course("Java", 10000);
