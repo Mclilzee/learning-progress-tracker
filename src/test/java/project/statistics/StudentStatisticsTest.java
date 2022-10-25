@@ -38,6 +38,12 @@ class StudentStatisticsTest {
     }
 
     @Test
+    @DisplayName("Student Statistics hash is same as student id")
+    void hashTest() {
+        assertEquals(10, firstStudent.hashCode());
+    }
+
+    @Test
     @DisplayName("Students statistics are equal if they have same id")
     void sameIdEquals() {
         assertEquals(thirdStudent, fourthStudent);
