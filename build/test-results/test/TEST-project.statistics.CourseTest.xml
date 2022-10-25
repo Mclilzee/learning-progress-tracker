@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="project.statistics.CourseTest" tests="15" skipped="0" failures="0" errors="0" timestamp="2022-10-25T03:47:57" hostname="DESKTOP-DM0E31D" time="0.041">
+<testsuite name="project.statistics.CourseTest" tests="15" skipped="0" failures="0" errors="0" timestamp="2022-10-25T03:53:09" hostname="DESKTOP-DM0E31D" time="0.036">
   <properties/>
   <testcase name="Courses are not equals if name is not the same" classname="project.statistics.CourseTest" time="0.019"/>
-  <testcase name="Courses are equals if name is the same" classname="project.statistics.CourseTest" time="0.002"/>
-  <testcase name="Return empty set of students if course has no students that completed course" classname="project.statistics.CourseTest" time="0.001"/>
+  <testcase name="Courses are equals if name is the same" classname="project.statistics.CourseTest" time="0.001"/>
+  <testcase name="Return empty set of students if course has no students that completed course" classname="project.statistics.CourseTest" time="0.002"/>
   <testcase name="Does not throw error on correct adding number" classname="project.statistics.CourseTest" time="0.001"/>
   <testcase name="Courses has same hashcode" classname="project.statistics.CourseTest" time="0.0"/>
   <testcase name="Throw error when wrong number supplied" classname="project.statistics.CourseTest" time="0.001"/>
@@ -12,9 +12,9 @@
   <testcase name="return correct Student statistic data" classname="project.statistics.CourseTest" time="0.003"/>
   <testcase name="Return correct students that completed course" classname="project.statistics.CourseTest" time="0.001"/>
   <testcase name="Completion score show correctly" classname="project.statistics.CourseTest" time="0.0"/>
-  <testcase name="Courses are not equal if other course is null" classname="project.statistics.CourseTest" time="0.0"/>
+  <testcase name="Courses are not equal if other course is null" classname="project.statistics.CourseTest" time="0.001"/>
   <testcase name="Show correct average score" classname="project.statistics.CourseTest" time="0.001"/>
-  <testcase name="Completed tasks show correctly" classname="project.statistics.CourseTest" time="0.0"/>
+  <testcase name="Completed tasks show correctly" classname="project.statistics.CourseTest" time="0.001"/>
   <testcase name="Show correct enrolled students" classname="project.statistics.CourseTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

@@ -78,4 +78,10 @@ class StudentTest {
         Student student2 = new Student("Mark", "Zoigberg", "Johndoe@hotmail.com");
         assertEquals(student.hashCode(), student2.hashCode());
     }
+
+    @Test
+    @DisplayName("Format to string with first and last name correctly")
+    void toStringTest() {
+        assertEquals("John Doe", student.toString());
+    }
 }

@@ -4,6 +4,7 @@ import project.IncorrectInput;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -107,5 +108,20 @@ public class Statistics {
 
     public String[] getCourseStatistics(String input) throws IncorrectInput {
         return coursesController.getCourseStatistics(input);
+    }
+
+    public void notifyStudents() {
+        Map<Student, Set<Course>> students = coursesController.getStudentsCompletedCourses();
+        for (Student student : students.keySet()) {
+            notifyStudentAboutCourseCompletion(student, students.get(student));
+        }
+    }
+
+    private void notifyStudentAboutCourseCompletion(Student student, Set<Course> courses) {
+        for (Course course : courses) {
+            System.out.println("To: " + student.getEmail());
+            System.out.println("Re: Your Learning Progress");
+            System.out.printf("Hello, %");
+        }
     }
 }
