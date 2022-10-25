@@ -116,7 +116,7 @@ public class Statistics {
             notifyStudentAboutCourseCompletion(student, students.get(student));
         }
 
-        System.out.printf("Total %d student%s have been notified", students.size(), students.size() == 1 ? "" : "s");
+        System.out.printf("Total %d student%s have been notified.%n", students.size(), students.size() == 1 ? "" : "s");
     }
 
     private void notifyStudentAboutCourseCompletion(Student student, Set<Course> courses) {
