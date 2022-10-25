@@ -41,8 +41,12 @@ class Course {
         return students.getOrDefault(student, 0);
     }
 
-    public void addScore(Student student, int score) {
-        if (score <= 0 || student == null) {
+    public void addScore(Student student, int score) throws IncorrectInput {
+        if (score < 0 || student == null) {
+            throw IncorrectInput.incorrectPointsFormat();
+        }
+
+        if (score == 0) {
             return;
         }
 

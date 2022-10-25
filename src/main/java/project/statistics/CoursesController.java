@@ -34,7 +34,7 @@ class CoursesController {
         System.out.println(builder);
     }
 
-    void addPointsToStudent(Student student, int[] scores) {
+    void addPointsToStudent(Student student, int[] scores) throws IncorrectInput {
         for (int i = 0; i < courses.length; i++) {
             courses[i].addScore(student, scores[i]);
         }
@@ -123,5 +123,3 @@ class CoursesController {
         }
     }
 }
-
-

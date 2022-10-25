@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="project.statistics.StudentStatisticsTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-10-25T00:18:12" hostname="DESKTOP-DM0E31D" time="0.003">
+<testsuite name="project.statistics.StudentStatisticsTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-10-25T00:38:03" hostname="DESKTOP-DM0E31D" time="0.003">
   <properties/>
-  <testcase name="compareTo()" classname="project.statistics.StudentStatisticsTest" time="0.002"/>
+  <testcase name="compareTo()" classname="project.statistics.StudentStatisticsTest" time="0.001"/>
   <testcase name="testToString()" classname="project.statistics.StudentStatisticsTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

@@ -26,7 +26,7 @@ class CourseTest {
         gly = new Student("gly", "glyman", "gly@yahoo.de");
     }
 
-    private void fillCourseWithStudents() {
+    private void fillCourseWithStudents() throws IncorrectInput {
         course.addScore(john, 5);
         course.addScore(john, 5);
 
@@ -34,7 +34,20 @@ class CourseTest {
         course.addScore(mark, 0);
 
         course.addScore(gly, 8);
-        course.addScore(gly, -5);
+        course.addScore(gly, 0);
+    }
+
+    @Test
+    @DisplayName("Does not throw error on correct adding number")
+    void addCorrectNumberFormat() {
+        assertDoesNotThrow(this::fillCourseWithStudents);
+    }
+
+    @Test
+    @DisplayName("Throw error when wrong number supplied")
+    void doesNotAddNegativeNumbers() {
+        Exception e = assertThrows(IncorrectInput.class, () -> course.addScore(john, -1));
+        assertEquals(IncorrectInput.incorrectPointsFormat().getMessage(), e.getMessage());
     }
 
     @Test
@@ -50,14 +63,14 @@ class CourseTest {
 
     @Test
     @DisplayName("Completed tasks show correctly")
-    void getCompletedTasks() {
+    void getCompletedTasks() throws IncorrectInput {
         fillCourseWithStudents();
         assertEquals(4, course.getCompletedTasks());
     }
 
     @Test
     @DisplayName("Add correct number to student")
-    void showCorrectScoreNumber() {
+    void showCorrectScoreNumber() throws IncorrectInput {
         fillCourseWithStudents();
         assertEquals(10, course.getStudentScore(john));
         assertEquals(5, course.getStudentScore(mark));
@@ -66,7 +79,7 @@ class CourseTest {
 
     @Test
     @DisplayName("Show correct enrolled students")
-    void showCorrectEnrolledStudents() {
+    void showCorrectEnrolledStudents() throws IncorrectInput {
         Set<Student> expected = Set.of(john, mark);
         course.addScore(john, 5);
         course.addScore(mark, 10);
@@ -77,7 +90,7 @@ class CourseTest {
 
     @Test
     @DisplayName("Show correct average score")
-    void averageScore() {
+    void averageScore() throws IncorrectInput {
         fillCourseWithStudents();
         assertEquals(7.66, course.getAverageScores(), 0.01);
     }
