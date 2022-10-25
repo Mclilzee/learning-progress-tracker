@@ -109,6 +109,13 @@ class StatisticsTest {
     }
 
     @Test
+    @DisplayName("Show most popular courses if all courses has same enrollment")
+    void mostPopularCoursesSameEnrollment() {
+        String expected = String.format("%s, %s, %s, %s", Courses.JAVA.getName(),
+                Courses.DSA.getName(), Courses.DATABASES.getName(), Courses.SPRING.getName());
+    }
+
+    @Test
     @DisplayName("Show correct least popular courses")
     void leastPopularCourses() throws IncorrectInput {
         String expected = Courses.DATABASES.getName();
@@ -199,6 +206,14 @@ class StatisticsTest {
         statistics.addPointsToStudent(getEmailHashString("gly@gmail.com") + " 0 0 0 7");
         statistics.addPointsToStudent(getEmailHashString("gly@gmail.com") + " 20 0 0 6");
         statistics.addPointsToStudent(getEmailHashString("gly@gmail.com") + " 0 0 0 0");
+    }
+
+    private void fillSamePointsStudents() throws IncorrectInput {
+        statistics.addStudent("john doe john@hotmail.com");
+        statistics.addStudent("Khalil Marksman khalil@gmail.com");
+
+        statistics.addPointsToStudent(getEmailHashString("john@hotmail.com" + " 1 1 1 1"));
+        statistics.addPointsToStudent(getEmailHashString("khalil@gmail.com" + " 1 1 1 1"));
     }
 
     private int getEmailHash(String email) {

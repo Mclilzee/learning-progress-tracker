@@ -29,11 +29,11 @@ class StudentStatistics implements Comparable<StudentStatistics> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         StudentStatistics that = (StudentStatistics) o;
-        return id == that.id && points == that.points;
+        return id == that.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, points);
+        return id;
     }
 }

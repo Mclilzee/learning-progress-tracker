@@ -1,6 +1,7 @@
 package project.statistics;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -34,5 +35,17 @@ class StudentStatisticsTest {
         assertTrue(firstStudent.compareTo(thirdStudent) < 0);
         assertTrue(secondStudent.compareTo(thirdStudent) < 0);
         assertEquals(0, thirdStudent.compareTo(fourthStudent));
+    }
+
+    @Test
+    @DisplayName("Students statistics are equal if they have same id")
+    void sameIdEquals() {
+        assertEquals(thirdStudent, fourthStudent);
+    }
+
+    @Test
+    @DisplayName("Students not equal if their id is different")
+    void differentIdNotEqual() {
+        assertNotEquals(firstStudent, secondStudent);
     }
 }
