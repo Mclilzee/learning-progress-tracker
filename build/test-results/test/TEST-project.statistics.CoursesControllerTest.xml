@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="project.statistics.CoursesControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-10-25T04:10:09" hostname="DESKTOP-DM0E31D" time="0.0">
+<testsuite name="project.statistics.CoursesControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-10-25T04:41:01" hostname="DESKTOP-DM0E31D" time="0.001">
   <properties/>
-  <testcase name="getStudentsCompletedCourses()" classname="project.statistics.CoursesControllerTest" time="0.0"/>
+  <testcase name="getStudentsCompletedCourses()" classname="project.statistics.CoursesControllerTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

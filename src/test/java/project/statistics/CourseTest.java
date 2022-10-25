@@ -121,6 +121,7 @@ class CourseTest {
         course.addScore(john, 300);
         course.addScore(gly, 500);
         assertEquals(Set.of(john, gly), course.getStudentsToNotify());
+        course.addScore(john, 500);
         assertEquals(Set.of(), course.getStudentsToNotify());
 
     }
