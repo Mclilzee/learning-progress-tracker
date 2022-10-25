@@ -66,16 +66,16 @@ class CoursesController {
         return formattedStatistics;
     }
 
-    Map<Student, Set<Course>> getStudentsCompletedCourses() {
+    Map<Student, Set<Course>> getStudentsNotificationList() {
         Map<Student, Set<Course>> studentSetMap = new LinkedHashMap<>();
         for (Course course : courses) {
-            fillMapFromCourseCompletedStudents(course, studentSetMap);
+            fillMapForEachStudentToNotify(course, studentSetMap);
         }
 
         return studentSetMap;
     }
 
-    private void fillMapFromCourseCompletedStudents(Course course, Map<Student, Set<Course>> map) {
+    private void fillMapForEachStudentToNotify(Course course, Map<Student, Set<Course>> map) {
         for (Student student : course.getStudentsToNotify()) {
             map.putIfAbsent(student, new LinkedHashSet<>());
             map.get(student).add(course);

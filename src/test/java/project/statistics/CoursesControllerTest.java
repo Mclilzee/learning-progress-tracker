@@ -11,7 +11,6 @@ import java.util.Map;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static project.statistics.CoursesController.Courses;
 
 class CoursesControllerTest {
 
@@ -50,6 +49,6 @@ class CoursesControllerTest {
         expected.put(john, johnSet);
         expected.put(mark, markSet);
 
-        assertEquals(expected, controller.getStudentsCompletedCourses());
+        assertEquals(expected, controller.getStudentsNotificationList());
     }
 }

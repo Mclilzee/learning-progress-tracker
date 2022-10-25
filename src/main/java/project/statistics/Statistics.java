@@ -3,7 +3,6 @@ package project.statistics;
 import project.IncorrectInput;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -111,7 +110,7 @@ public class Statistics {
     }
 
     public void notifyStudents() {
-        Map<Student, Set<Course>> students = coursesController.getStudentsCompletedCourses();
+        Map<Student, Set<Course>> students = coursesController.getStudentsNotificationList();
         for (Student student : students.keySet()) {
             notifyStudentAboutCourseCompletion(student, students.get(student));
         }
