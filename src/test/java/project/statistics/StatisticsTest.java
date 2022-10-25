@@ -168,14 +168,7 @@ class StatisticsTest {
     @DisplayName("Throw error if no course found for the name")
     void noCourseFound() {
         Exception e = assertThrows(IncorrectInput.class, () -> statistics.getCourseStatistics("doblos"));
-        assertEquals(IncorrectInput.incorrectCourseName("doblos").getMessage(), e.getMessage());
-    }
-
-    @Test
-    @DisplayName("Throw error if no students found in course")
-    void noStudentsFound() {
-        Exception e = assertThrows(IncorrectInput.class, () -> statistics.getCourseStatistics("java"));
-        assertEquals(IncorrectInput.noStudentsEnrolledInCourse("Java").getMessage(), e.getMessage());
+        assertEquals(IncorrectInput.incorrectCourseName().getMessage(), e.getMessage());
     }
 
     @Test

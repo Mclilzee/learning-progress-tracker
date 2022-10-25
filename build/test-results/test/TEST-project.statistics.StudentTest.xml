@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="project.statistics.StudentTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2022-10-24T07:10:58" hostname="DESKTOP-DM0E31D" time="0.009">
+<testsuite name="project.statistics.StudentTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2022-10-25T00:18:12" hostname="DESKTOP-DM0E31D" time="0.006">
   <properties/>
-  <testcase name="Objects have same hashcode if they have same email" classname="project.statistics.StudentTest" time="0.001"/>
-  <testcase name="objectsAreEqual()" classname="project.statistics.StudentTest" time="0.001"/>
+  <testcase name="Objects have same hashcode if they have same email" classname="project.statistics.StudentTest" time="0.0"/>
+  <testcase name="objectsAreEqual()" classname="project.statistics.StudentTest" time="0.0"/>
   <testcase name="getFirstName()" classname="project.statistics.StudentTest" time="0.001"/>
   <testcase name="setLastName()" classname="project.statistics.StudentTest" time="0.0"/>
-  <testcase name="Objects are considered equal if they have the same email" classname="project.statistics.StudentTest" time="0.0"/>
-  <testcase name="getLastName()" classname="project.statistics.StudentTest" time="0.001"/>
-  <testcase name="Objects are not equal if they have different email, not same class or null" classname="project.statistics.StudentTest" time="0.001"/>
+  <testcase name="Objects are considered equal if they have the same email" classname="project.statistics.StudentTest" time="0.001"/>
+  <testcase name="getLastName()" classname="project.statistics.StudentTest" time="0.0"/>
+  <testcase name="Objects are not equal if they have different email, not same class or null" classname="project.statistics.StudentTest" time="0.0"/>
   <testcase name="setEmail()" classname="project.statistics.StudentTest" time="0.0"/>
   <testcase name="setFirstName()" classname="project.statistics.StudentTest" time="0.0"/>
   <testcase name="getEmail()" classname="project.statistics.StudentTest" time="0.001"/>

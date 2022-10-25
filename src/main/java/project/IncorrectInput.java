@@ -34,11 +34,7 @@ public class IncorrectInput extends Exception {
         return new IncorrectInput("Incorrect email");
     }
 
-    public static IncorrectInput incorrectCourseName(String name) {
-        return new IncorrectInput("No course found for name=" + name);
-    }
-
-    public static IncorrectInput noStudentsEnrolledInCourse(String name) {
-        return new IncorrectInput("No students enrolled in course=" + name);
+    public static IncorrectInput incorrectCourseName() {
+        return new IncorrectInput("Unknown course.");
     }
 }

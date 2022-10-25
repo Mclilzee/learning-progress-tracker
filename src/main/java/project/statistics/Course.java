@@ -60,10 +60,6 @@ class Course {
     }
 
     public List<StudentStatistics> getCourseStatistics() throws IncorrectInput {
-        if (students.isEmpty()) {
-            throw IncorrectInput.noStudentsEnrolledInCourse(this.name);
-        }
-
         List<StudentStatistics> statistics = new ArrayList<>();
         for (Student student : students.keySet()) {
             double completion = getStudentCompletionScore(student);

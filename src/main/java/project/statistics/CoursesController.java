@@ -47,7 +47,7 @@ class CoursesController {
             }
         }
 
-        throw IncorrectInput.incorrectCourseName(courseName);
+        throw IncorrectInput.incorrectCourseName();
     }
 
     String[] formatCourseStatistics(Course course) throws IncorrectInput {
