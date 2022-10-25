@@ -57,7 +57,7 @@ public class Statistics {
     }
 
     public String getMostPopularCourses() {
-        List<Course> courses = coursesController.getMostPopularCourses();
+        Set<Course> courses = coursesController.getMostPopularCourses();
         if (courses.isEmpty()) {
             return "n/a";
         }
@@ -66,7 +66,7 @@ public class Statistics {
     }
 
     public String getLeastPopularCourses() {
-        List<Course> courses = coursesController.getLeastPopularCourses();
+        Set<Course> courses = coursesController.getLeastPopularCourses();
         if (courses.isEmpty()) {
             return "n/a";
         }
@@ -74,7 +74,7 @@ public class Statistics {
     }
 
     public String getHighestActivityCourses() {
-        List<Course> courses = coursesController.getHighestActivityCourses();
+        Set<Course> courses = coursesController.getHighestActivityCourses();
         if (courses.isEmpty()) {
             return "n/a";
         }
@@ -82,7 +82,7 @@ public class Statistics {
     }
 
     public String getLowestActivityCourses() {
-        List<Course> courses = coursesController.getLowestActivityCourses();
+        Set<Course> courses = coursesController.getLowestActivityCourses();
         if (courses.isEmpty()) {
             return "n/a";
         }
@@ -90,7 +90,7 @@ public class Statistics {
     }
 
     public String getEasiestCourses() {
-        List<Course> courses = coursesController.getEasiestCourses();
+        Set<Course> courses = coursesController.getEasiestCourses();
         if (courses.isEmpty()) {
             return "n/a";
         }
@@ -98,7 +98,7 @@ public class Statistics {
     }
 
     public String getHardestCourses() {
-        List<Course> courses = coursesController.getHardestCourses();
+        Set<Course> courses = coursesController.getHardestCourses();
         if (courses.isEmpty()) {
             return "n/a";
         }

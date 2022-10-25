@@ -109,19 +109,20 @@ class StatisticsTest {
     }
 
     @Test
-    @DisplayName("Show most popular courses if all courses has same enrollment")
-    void mostPopularCoursesSameEnrollment() {
-        String expected = String.format("%s, %s, %s, %s", Courses.JAVA.getName(),
-                Courses.DSA.getName(), Courses.DATABASES.getName(), Courses.SPRING.getName());
-    }
-
-    @Test
     @DisplayName("Show correct least popular courses")
     void leastPopularCourses() throws IncorrectInput {
         String expected = Courses.DATABASES.getName();
         fillStudents();
 
         assertEquals(expected, statistics.getLeastPopularCourses());
+    }
+
+    @Test
+    @DisplayName("Show n/a when all courses has same amount of enrollments")
+    void leastPopularCoursesSameEnrollment() throws IncorrectInput {
+        fillSamePointsStudents();
+
+        assertEquals("n/a", statistics.getLeastPopularCourses());
     }
 
     @Test
@@ -143,6 +144,14 @@ class StatisticsTest {
     }
 
     @Test
+    @DisplayName("Show n/a if all courses have same activity")
+    void lowestActivityCoursesSameActivity() throws IncorrectInput {
+        fillSamePointsStudents();
+
+        assertEquals("n/a", statistics.getLowestActivityCourses());
+    }
+
+    @Test
     @DisplayName("Show correct easiest courses")
     void easiestCourses() throws IncorrectInput {
         String expected = Courses.DSA.getName();
@@ -158,6 +167,14 @@ class StatisticsTest {
         fillStudents();
 
         assertEquals(expected, statistics.getHardestCourses());
+    }
+
+    @Test
+    @DisplayName("Show n/a if all courses have same difficulty")
+    void hardestCoursesSameDifficulty() throws IncorrectInput {
+        fillSamePointsStudents();
+
+        assertEquals("n/a", statistics.getHardestCourses());
     }
 
     @Test
@@ -212,8 +229,8 @@ class StatisticsTest {
         statistics.addStudent("john doe john@hotmail.com");
         statistics.addStudent("Khalil Marksman khalil@gmail.com");
 
-        statistics.addPointsToStudent(getEmailHashString("john@hotmail.com" + " 1 1 1 1"));
-        statistics.addPointsToStudent(getEmailHashString("khalil@gmail.com" + " 1 1 1 1"));
+        statistics.addPointsToStudent(getEmailHashString("john@hotmail.com") + " 1 1 1 1");
+        statistics.addPointsToStudent(getEmailHashString("khalil@gmail.com") + " 1 1 1 1");
     }
 
     private int getEmailHash(String email) {

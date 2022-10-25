@@ -1,7 +1,5 @@
 package project.statistics;
 
-import java.util.Objects;
-
 class StudentStatistics implements Comparable<StudentStatistics> {
     private final int id;
     private final int points;

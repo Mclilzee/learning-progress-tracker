@@ -63,14 +63,14 @@ class Course {
         return Double.parseDouble(totalScore.divide(studentCount, 2, RoundingMode.HALF_UP).toPlainString());
     }
 
-    public List<StudentStatistics> getCourseStatistics() throws IncorrectInput {
-        List<StudentStatistics> statistics = new ArrayList<>();
+    public Set<StudentStatistics> getCourseStatistics() {
+        Set<StudentStatistics> statistics = new TreeSet<>();
         for (Student student : students.keySet()) {
             double completion = getStudentCompletionScore(student);
             statistics.add(new StudentStatistics(student.hashCode(), students.get(student), completion));
         }
 
-        return statistics.stream().sorted().collect(Collectors.toList());
+        return statistics;
     }
 
     private double getStudentCompletionScore(Student student) {

@@ -50,54 +50,81 @@ class CoursesController {
         throw IncorrectInput.incorrectCourseName();
     }
 
-    String[] formatCourseStatistics(Course course) throws IncorrectInput {
-        List<StudentStatistics> statistics = course.getCourseStatistics();
+    String[] formatCourseStatistics(Course course) {
+        Set<StudentStatistics> statistics = course.getCourseStatistics();
 
         String[] formattedStatistics = new String[statistics.size() + 2];
         formattedStatistics[0] = course.getName();
         formattedStatistics[1] = "id\t\tpoints\t\tcompleted";
 
-        for (int i = 0; i < statistics.size(); i++) {
-            formattedStatistics[i + 2] = statistics.get(i).toString();
+        int i = 2;
+        for (StudentStatistics studentStatistics : statistics) {
+            formattedStatistics[i] = studentStatistics.toString();
+            i++;
         }
 
         return formattedStatistics;
     }
 
-    List<Course> getMostPopularCourses() {
+    Set<Course> getMostPopularCourses() {
         int mostPopularCount = Arrays.stream(courses).mapToInt(course -> course.getStudents().size()).max().orElse(-1);
-        List<Course> enrolled = Arrays.stream(courses).filter(course -> course.getStudents().size() == mostPopularCount).collect(Collectors.toList());
-        return enrolled.size() != Courses.values().length ? enrolled : List.of();
+        if (mostPopularCount == 0) {
+            return Set.of();
+        }
+
+        return Arrays.stream(courses).filter(course -> course.getStudents().size() == mostPopularCount).collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
-    List<Course> getLeastPopularCourses() {
+    Set<Course> getLeastPopularCourses() {
+        Set<Course> mostPopular = getMostPopularCourses();
+        if (mostPopular.isEmpty()) {
+            return Set.of();
+        }
+
         int leastPopularCount = Arrays.stream(courses).mapToInt(course -> course.getStudents().size()).min().orElse(-1);
-        List<Course> enrolled = Arrays.stream(courses).filter(course -> course.getStudents().size() == leastPopularCount).collect(Collectors.toList());
-        return enrolled.size() != Courses.values().length ? enrolled : List.of();
+        return Arrays.stream(courses).filter(course -> course.getStudents().size() == leastPopularCount && !mostPopular.contains(course))
+                .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
-    List<Course> getHighestActivityCourses() {
+    Set<Course> getHighestActivityCourses() {
         int highestActivityCount = Arrays.stream(courses).mapToInt(Course::getCompletedTasks).max().orElse(-1);
-        List<Course> activity = Arrays.stream(courses).filter(course -> course.getCompletedTasks() == highestActivityCount).collect(Collectors.toList());
-        return activity.size() != Courses.values().length ? activity : List.of();
+        if (highestActivityCount == 0) {
+            return Set.of();
+        }
+
+        return Arrays.stream(courses).filter(course -> course.getCompletedTasks() == highestActivityCount)
+                .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
-    List<Course> getLowestActivityCourses() {
+    Set<Course> getLowestActivityCourses() {
+        Set<Course> highestActivity = getHighestActivityCourses();
+        if (highestActivity.isEmpty()) {
+            return Set.of();
+        }
+
         int lowestActivityCount = Arrays.stream(courses).mapToInt(Course::getCompletedTasks).min().orElse(-1);
-        List<Course> activity = Arrays.stream(courses).filter(course -> course.getCompletedTasks() == lowestActivityCount).collect(Collectors.toList());
-        return activity.size() != Courses.values().length ? activity : List.of();
+        return Arrays.stream(courses).filter(course -> course.getCompletedTasks() == lowestActivityCount && !highestActivity.contains(course))
+                .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
-    List<Course> getEasiestCourses() {
+    Set<Course> getEasiestCourses() {
         double highestAverage = Arrays.stream(courses).mapToDouble(Course::getAverageScores).max().orElse(-1);
-        List<Course> average = Arrays.stream(courses).filter(course -> course.getAverageScores() == highestAverage).collect(Collectors.toList());
-        return average.size() != Courses.values().length ? average : List.of();
+        if (highestAverage == 0) {
+            return Set.of();
+        }
+        return Arrays.stream(courses).filter(course -> course.getAverageScores() == highestAverage)
+                .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
-    List<Course> getHardestCourses() {
+    Set<Course> getHardestCourses() {
+        Set<Course> easiestCourses = getEasiestCourses();
+        if (easiestCourses.isEmpty()) {
+            return Set.of();
+        }
+
         double lowestAverage = Arrays.stream(courses).mapToDouble(Course::getAverageScores).min().orElse(-1);
-        List<Course> average = Arrays.stream(courses).filter(course -> course.getAverageScores() == lowestAverage).collect(Collectors.toList());
-        return average.size() != Courses.values().length ? average : List.of();
+        return Arrays.stream(courses).filter(course -> course.getAverageScores() == lowestAverage && !easiestCourses.contains(course))
+                .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
     enum Courses {

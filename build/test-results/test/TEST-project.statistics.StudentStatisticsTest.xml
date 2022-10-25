@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="project.statistics.StudentStatisticsTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2022-10-25T00:58:06" hostname="DESKTOP-DM0E31D" time="0.006">
+<testsuite name="project.statistics.StudentStatisticsTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2022-10-25T01:21:40" hostname="DESKTOP-DM0E31D" time="0.005">
   <properties/>
   <testcase name="compareTo()" classname="project.statistics.StudentStatisticsTest" time="0.002"/>
   <testcase name="testToString()" classname="project.statistics.StudentStatisticsTest" time="0.001"/>
-  <testcase name="Students not equal if their id is different" classname="project.statistics.StudentStatisticsTest" time="0.0"/>
-  <testcase name="Student Statistics hash is same as student id" classname="project.statistics.StudentStatisticsTest" time="0.0"/>
-  <testcase name="Students statistics are equal if they have same id" classname="project.statistics.StudentStatisticsTest" time="0.001"/>
+  <testcase name="Students not equal if their id is different" classname="project.statistics.StudentStatisticsTest" time="0.001"/>
+  <testcase name="Student Statistics hash is same as student id" classname="project.statistics.StudentStatisticsTest" time="0.001"/>
+  <testcase name="Students statistics are equal if they have same id" classname="project.statistics.StudentStatisticsTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

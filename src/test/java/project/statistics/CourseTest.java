@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import project.IncorrectInput;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -100,7 +101,7 @@ class CourseTest {
     void studentStatistics() throws IncorrectInput {
         fillCourseWithStudents();
 
-        List<StudentStatistics> expected = new ArrayList<>();
+        Set<StudentStatistics> expected = new LinkedHashSet<>();
         expected.add(new StudentStatistics(john.hashCode(), 10, 3.300));
         expected.add(new StudentStatistics(gly.hashCode(), 8, 2.700));
         expected.add(new StudentStatistics(mark.hashCode(), 5, 1.700));
