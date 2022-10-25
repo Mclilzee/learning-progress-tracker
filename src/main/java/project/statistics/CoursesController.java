@@ -66,6 +66,22 @@ class CoursesController {
         return formattedStatistics;
     }
 
+    Map<Student, Set<Course>> getStudentsCompletedCourses() {
+        Map<Student, Set<Course>> studentSetMap = new LinkedHashMap<>();
+        for (Course course : courses) {
+            fillMapFromCourseCompletedStudents(course, studentSetMap);
+        }
+
+        return studentSetMap;
+    }
+
+    private void fillMapFromCourseCompletedStudents(Course course, Map<Student, Set<Course>> map) {
+        for (Student student : course.getCourseCompletedStudents()) {
+            map.putIfAbsent(student, new LinkedHashSet<>());
+            map.get(student).add(course);
+        }
+    }
+
     Set<Course> getMostPopularCourses() {
         int mostPopularCount = Arrays.stream(courses).mapToInt(course -> course.getStudents().size()).max().orElse(-1);
         if (mostPopularCount == 0) {
@@ -147,6 +163,10 @@ class CoursesController {
 
         Course getCourse() {
             return new Course(this.name, this.completionScore);
+        }
+
+        int getCompletionScore() {
+            return this.completionScore;
         }
     }
 }

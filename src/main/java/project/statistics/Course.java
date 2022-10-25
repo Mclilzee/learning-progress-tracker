@@ -18,7 +18,7 @@ class Course {
     Course(String name, int completionScore) {
         this.name = name;
         this.completionScore = completionScore;
-        this.students = new HashMap<>();
+        this.students = new LinkedHashMap<>();
     }
 
     String getName() {
