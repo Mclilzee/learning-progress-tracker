@@ -16,6 +16,7 @@ public class Main {
 
     private static void optionsMenu() {
         System.out.println("Learning Progress Tracker");
+        System.out.println("Refer to README.md for the controls input");
 
         boolean quit = false;
         while (!quit) {
