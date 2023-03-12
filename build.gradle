@@ -1,5 +1,5 @@
 plugins {
-    id 'java'
+    id 'application'
 }
 
 group 'project'
@@ -22,8 +22,6 @@ test {
     }
 }
 
-jar {
-    manifest {
-        attributes("Main-Class": "project.Main")
-    }
+application {
+    mainName = 'project.Main'
 }
