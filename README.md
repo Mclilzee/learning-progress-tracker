@@ -14,7 +14,6 @@ When a student reaches that score, he will be put on the notification list, each
 - Database - 480
 
 # Controls Menu
-- `exit` to exit the program
 - `add student` to add student, the input should be space separated as follow `firstName lastName email`
 - `list` to output all the students currently enrolled in the courses 
 -  `add points` will take the student ID and scores as input, separated by spaces, the points will be in order, `Java` `DSA` `Database` `Spring` more info in the examples bellow.
@@ -22,5 +21,6 @@ Note: adding score to a student will enroll him in the course, leaving points as
 - `find` to search for specific student courses information
 - `statistics` will show all courses overall data from popularity to hardest.
 - `notify` will send messages to all users to notify them of their completed courses.
+- `exit` to exit te program
 
 # Examples
